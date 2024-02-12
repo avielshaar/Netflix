@@ -1,13 +1,13 @@
 import User from '../models/user.js';
-import Product from '../models/Product.js';
-import data from '../data.js';
+import Content from '../models/Content.js';
 
 
-const getProducts = async(req,res) =>{   
+
+const getContent = async(req,res) =>{   
     const products = await Product.find();
     res.send(products);
 }
-const getProductById = async(req, res) => {
+const getContentById = async(req, res) => {
     const product = await Product.findById(req.params.id);
     
     if (product) {
@@ -17,7 +17,7 @@ const getProductById = async(req, res) => {
     }
 };
 
-const getProductByToken=async (req, res) => {
+const getContentByToken=async (req, res) => {
     const {token}=req.params;
     const product = await Product.findOne({token:token});
     if (product) {
@@ -32,7 +32,7 @@ const getCategories=async (req, res) => {
     res.send(categories);  
 }
 
-const getProductsByQuery=async (req, res) => {
+const getContentByQuery=async (req, res) => {
     const { query } = req;
   const page = query.page || 1;
   const order = query.order || "";
@@ -113,4 +113,4 @@ const getProductsByQuery=async (req, res) => {
 
 
 
-export {getProducts,getProductById,getProductByToken,getCategories,getProductsByQuery};
+export {getContent,getContentById,getContentByToken,getCategories,getContentByQuery};
