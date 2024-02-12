@@ -8,12 +8,14 @@ import { generateToken } from "../utils.js";
 // };
 
 const signup = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { userName, email, password,profilePicture } = req.body;
 
     const newUser = new User({
-        name: name,
+        userName: userName,
         email: email,
-        password: bcrypt.hashSync(password)
+        password: bcrypt.hashSync(password),
+        isAdmin:false,
+        profilePicture: profilePicture
     });
 
 
@@ -24,6 +26,7 @@ const signup = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
+        profilePicture: user.profilePicture,
         token: generateToken(user)
     })
 }
@@ -38,6 +41,7 @@ const signin = async (req, res) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
+                profilePicture: user.profilePicture,
                 token: generateToken(user)
             })
             return;
