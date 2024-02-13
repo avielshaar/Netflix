@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import './App.css'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
    <BrowserRouter>
    <div className='d-flex flex-column side-allPage min-width'>
-   <ToastContainer position='bottom-center' limit={1}/>
+   {/* <ToastContainer position='bottom-center' limit={1}/> */}
    <Header></Header>
       <main>
         <Container className='mt-3'>
