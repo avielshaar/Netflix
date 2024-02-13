@@ -11,7 +11,7 @@ const addOrder=async(req,res)=>{
         totalPrice:req.body.totalPrice,
         taxPrice:req.body.taxPrice,
         user:req.user._id
-    });
+    }); // heyggggg
     const order= await newOrder.save();
     res.status(201).send({message:'Order Added Successfully',order});
 
