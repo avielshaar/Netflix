@@ -9,9 +9,11 @@ const seedData = async (req, res) => {
     await Content.deleteMany({});
     await List.deleteMany({});
 
-    await User.insertMany(data.users, { ordered: false });
-    await Content.insertMany(data.content, { ordered: false });
-    await List.insertMany(getLists(), { ordered: false });
+    const users = await User.insertMany(data.users, { ordered: false });
+    const content = await Content.insertMany(data.content, { ordered: false });
+
+    const lists = await getLists()
+    await List.insertMany(lists, { ordered: false });
 
     res.status(200).send("Data seeded successfully");
   } catch (error) {
@@ -24,7 +26,7 @@ async function getLists() {
   const lists = [];
   
   for (const listName of listMovieNames) {
-    const randomContent = shuffleArray(
+    const randomContent = shuffleContent(
       await Content.find({ isSeries: false })
     ).slice(0, 7);
 
@@ -38,7 +40,7 @@ async function getLists() {
   }
 
   for (const listName of listSeriesNames) {
-    const randomContent = shuffleArray(
+    const randomContent = shuffleContent(
       await Content.find({ isSeries: true })
     ).slice(0, 7);
 
@@ -50,7 +52,6 @@ async function getLists() {
 
     lists.push(list);
   }
-
   return lists;
 }
 

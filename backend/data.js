@@ -41,7 +41,7 @@ export const data = {
   content: [
     {
       //Movies
-      title: "Inception",
+      title: "Inception2",
       description:
         "Inception is a 2010 science fiction action film written, co-produced, and directed by Christopher Nolan, and co-produced by Emma Thomas. The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious of his targets.",
       img: "https://bfoggdmu.files.wordpress.com/2012/10/zz22344f92.jpg",

@@ -7,6 +7,7 @@ const userschema = new mongoose.Schema(
     password: { type: String, required: true },
     isAdmin: { type: Boolean, required: true },
     profilePicture: { type: String },
+    // put operation add my list of content
   },
   {
     timestamps: true,
