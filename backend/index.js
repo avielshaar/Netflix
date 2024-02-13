@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import seedRouter from "./routes/seedRouter.js";
 import contentRouter from "./routes/contentRouter.js";
-import usersRouter from "./routes/userRouter.js";
+import usersRouter from "./routes/usersRouter.js";
 import listsRouter from "./routes/listsRouter.js";
 
 dotenv.config();
