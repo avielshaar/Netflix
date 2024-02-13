@@ -8,13 +8,13 @@ const ContentSchema = new mongoose.Schema(
         imgTitle: { type: String, required: true },
         imgThumb: { type: String, required: true },
         imgVertical: { type: String, required: true },
-        trailer: { type: String},
-        movie: { type: String},
+        trailer: { type: String, required: true },
+        movie: { type: String, required: true },
         duration: { type: String, required: true},
-        year: { type: String, },
+        year: { type: String, required: true },
         limit: { type: String, required: true },
         genre: { type: String, required: true },
-        isSeries: { type: Boolean, required: true},     
+        isSeries: { type: Boolean, required: true}   
     }
     
 );

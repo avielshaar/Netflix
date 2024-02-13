@@ -1,39 +1,36 @@
-import User from '../models/user.js';
-import Content from '../models/Content.js';
+import Content from "../models/Content.js";
 
+const getContent = async (req, res) => {
+  const content = await Content.find();
+  res.send(content);
+};
+const getContentById = async (req, res) => {
+  const product = await Product.findById(req.params.id);
 
-
-const getContent = async(req,res) =>{   
-    const products = await Product.find();
-    res.send(products);
-}
-const getContentById = async(req, res) => {
-    const product = await Product.findById(req.params.id);
-    
-    if (product) {
-        res.send(product);
-    } else {
-        res.status(400).send({ message: 'Product not found' });
-    }
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(400).send({ message: "Product not found" });
+  }
 };
 
-const getContentByToken=async (req, res) => {
-    const {token}=req.params;
-    const product = await Product.findOne({token:token});
-    if (product) {
-        res.send(product);
-    } else {
-        res.status(400).send({ message: 'Product not found' });
-    }
-}
+const getContentByToken = async (req, res) => {
+  const { token } = req.params;
+  const product = await Product.findOne({ token: token });
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(400).send({ message: "Product not found" });
+  }
+};
 
-const getCategories=async (req, res) => {    
-    const categories = await Product.distinct('category');
-    res.send(categories);  
-}
+const getCategories = async (req, res) => {
+  const categories = await Product.distinct("category");
+  res.send(categories);
+};
 
-const getContentByQuery=async (req, res) => {
-    const { query } = req;
+const getContentByQuery = async (req, res) => {
+  const { query } = req;
   const page = query.page || 1;
   const order = query.order || "";
   const category = query.category || "";
@@ -78,12 +75,12 @@ const getContentByQuery=async (req, res) => {
     order === "lowest"
       ? { price: 1 }
       : order === "highest"
-      ? { price: -1 }
-      : order === "toprated"
-      ? { rating: -1 }
-      : order === "newest"
-      ? { createdAt: -1 }
-      : { _id: -1 };
+        ? { price: -1 }
+        : order === "toprated"
+          ? { rating: -1 }
+          : order === "newest"
+            ? { createdAt: -1 }
+            : { _id: -1 };
 
   const products = await Product.find({
     ...queryFilter,
@@ -108,9 +105,12 @@ const getContentByQuery=async (req, res) => {
     page,
     pages: Math.ceil(countProducts / pageSize),
   });
-}
- 
+};
 
-
-
-export {getContent,getContentById,getContentByToken,getCategories,getContentByQuery};
+export {
+  getContent,
+  getContentById,
+  getContentByToken,
+  getCategories,
+  getContentByQuery,
+};
