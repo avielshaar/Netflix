@@ -4,36 +4,37 @@ const getContent = async (req, res) => {
   const content = await Content.find();
   res.send(content);
 };
-const getContentById = async (req, res) => {
-  const product = await Product.findById(req.params.id);
 
-  if (product) {
-    res.send(product);
+const getContentById = async (req, res) => {
+  const content = await Content.findById(req.params.id);
+
+  if (content) {
+    res.send(content);
   } else {
-    res.status(400).send({ message: "Product not found" });
+    res.status(400).send({ message: "Content not found" });
   }
 };
 
 const getContentByToken = async (req, res) => {
   const { token } = req.params;
-  const product = await Product.findOne({ token: token });
-  if (product) {
-    res.send(product);
+  const content = await Content.findOne({ token: token });
+  if (content) {
+    res.send(content);
   } else {
-    res.status(400).send({ message: "Product not found" });
+    res.status(400).send({ message: "Content not found" });
   }
 };
 
-const getCategories = async (req, res) => {
-  const categories = await Product.distinct("category");
-  res.send(categories);
+const getGenres = async (req, res) => {
+  const genres = await Content.distinct("genre");
+  res.send(genres);
 };
 
 const getContentByQuery = async (req, res) => {
   const { query } = req;
   const page = query.page || 1;
   const order = query.order || "";
-  const category = query.category || "";
+  const genre = query.genre || "";
   const price = query.price || "";
   const rating = query.rating || "";
   const searchQuery = query.query || "";
@@ -111,6 +112,6 @@ export {
   getContent,
   getContentById,
   getContentByToken,
-  getCategories,
+  getGenres,
   getContentByQuery,
 };
