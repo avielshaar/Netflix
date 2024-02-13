@@ -18,7 +18,7 @@ const addOrder=async(req,res)=>{
 }
 
 const getOrderById = async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params // t
     const order = await Order.findById(id)
     if (order) {
         res.status(200).send({ message: 'Order found', order })
