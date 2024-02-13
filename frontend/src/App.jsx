@@ -1,27 +1,36 @@
 import { useState } from 'react'
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 // import "react-toastify/dist/ReactToastify.css";
+import { Container } from './imports.js'
 import './App.css'
+import Header from './components/shared/Header/Header.jsx'
+import FrontPage from './pages/FrontPage.jsx'
+import Navbar from './components/shared/Navbar/Navbar.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-   <BrowserRouter>
-   <div className='d-flex flex-column side-allPage min-width'>
-   {/* <ToastContainer position='bottom-center' limit={1}/> */}
-   <Header></Header>
-      <main>
-        <Container className='mt-3'>
+   
+    <BrowserRouter>
+    <div className='d-flex flex-column side-allPage min-width'>
+    {/* <ToastContainer position='bottom-center' limit={1}/> */}
+      {localStorage.getItem("userInfo")?<Navbar></Navbar>:<Header></Header>}
+      <main>        
           <Routes>
+            <Route path = "/" element = {<FrontPage/>}></Route>
+            {/* <Route path = "/signin" element = {<SignIn/>}></Route>
+            <Route path = "/signUp" element = {<SignUp/>}></Route> */}
            
           </Routes>
-        </Container>
+       
       </main>
-      <Footer/>
-   </div>
-   </BrowserRouter>
+      {/* <Footer/> */}
+    </div>
+  </BrowserRouter>
   )
 }
 
 export default App
+
+
