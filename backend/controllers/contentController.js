@@ -33,10 +33,7 @@ const getGenres = async (req, res) => {
 const getContentByQuery = async (req, res) => {
   const { query } = req;
   const page = query.page || 1;
-  const order = query.order || "";
   const genre = query.genre || "";
-  const price = query.price || "";
-  const rating = query.rating || "";
   const searchQuery = query.query || "";
   const pageSize = query.pageSize || 6;
 
@@ -49,62 +46,41 @@ const getContentByQuery = async (req, res) => {
           },
         }
       : {};
-  const categoryFilter =
-    category && category !== "all"
-      ? {
-          category,
-        }
-      : {};
-  const priceFilter =
-    price && price !== "all"
-      ? {
-          price: {
-            $gte: Number(price.split("-")[0]),
-            $lte: Number(price.split("-")[1]),
-          },
-        }
-      : {};
-  const ratingFilter =
-    rating && rating !== "all"
-      ? {
-          "rating.rate": {
-            $gte: Number(rating),
-          },
-        }
-      : {};
-  const sortOrderFilter =
-    order === "lowest"
-      ? { price: 1 }
-      : order === "highest"
-        ? { price: -1 }
-        : order === "toprated"
-          ? { rating: -1 }
-          : order === "newest"
-            ? { createdAt: -1 }
-            : { _id: -1 };
 
-  const products = await Product.find({
+  const genreFilter =
+    genre && genre !== "all"
+      ? {
+          genre,
+        }
+      : {};
+
+  const sortContentFilter =
+    order === "yr"
+      ? { year: -1 }
+      : order === "az"
+        ? { title: -1 }
+        : order === "za"
+          ? { title: -1 }
+          : { _id: -1 };
+
+  const content = await Content.find({
     ...queryFilter,
-    ...categoryFilter,
-    ...priceFilter,
-    ...ratingFilter,
+    ...genreFilter,
   })
-    .sort(sortOrderFilter)
+    .sort(sortContentFilter)
     .skip((page - 1) * pageSize)
     .limit(pageSize);
 
-  const countProducts = await Product.countDocuments({
+  const countContent = await Content.countDocuments({
     ...queryFilter,
-    ...categoryFilter,
-    ...priceFilter,
-    ...ratingFilter,
+    ...genreFilter,
   });
 
   res.send({
-    products,
-    countProducts,
+    content,
+    countContent,
     page,
-    pages: Math.ceil(countProducts / pageSize),
+    pages: Math.ceil(countContent / pageSize),
   });
 };
 
