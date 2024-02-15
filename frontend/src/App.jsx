@@ -13,9 +13,9 @@ function App() {
   return (
    
     <BrowserRouter>
-    <div className='d-flex flex-column side-allPage min-width'>
+    <div >
     {/* <ToastContainer position='bottom-center' limit={1}/> */}
-      {localStorage.getItem("userInfo")?<Navbar></Navbar>:<Header></Header>}
+      {/* {localStorage.getItem("userInfo")?<Navbar></Navbar>:<Header></Header>} */}
       <main>        
           <Routes>
             <Route path = "/" element = {<FrontPage/>}></Route>

@@ -8,6 +8,11 @@
 ),
 url("https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1024x576.jpg");
 width:100%;
-height: 120vh;
+height: 100vh;
 }
 
+.center{
+  width:80%;
+  height: 80%;
+  background-color: red;
+}
