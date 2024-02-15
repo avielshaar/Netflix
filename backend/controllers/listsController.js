@@ -6,11 +6,8 @@ const getMovieLists = async (req, res) => {
 };
 
 const getSeriesLists = async (req, res) => {
-    const lists = await List.find({ isSeries: true });
-    res.send(lists);
-  };
-
-export {
-  getMovieLists,
-  getSeriesLists
+  const lists = await List.find({ isSeries: true });
+  res.send(lists);
 };
+
+export { getMovieLists, getSeriesLists };

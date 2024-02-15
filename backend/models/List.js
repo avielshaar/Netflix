@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 const listSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    content: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Content",
-      required: true,
-    }],
+    content: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Content",
+        required: true,
+      },
+    ],
     isSeries: { type: Boolean, required: true },
   },
   {

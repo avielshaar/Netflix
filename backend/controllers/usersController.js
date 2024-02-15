@@ -1,5 +1,5 @@
 import User from "../models/user.js";
-import Content from "../models/Content.js"
+import Content from "../models/Content.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils.js";
 
@@ -16,7 +16,6 @@ const signup = async (req, res) => {
 
   const user = await newUser.save();
 
-  // we don't need the password
   res.send({
     _id: user._id,
     name: user.name,
@@ -37,6 +36,7 @@ const signin = async (req, res) => {
         name: user.name,
         email: user.email,
         profilePicture: user.profilePicture,
+        list: user.list,
         token: generateToken(user),
       });
       return;
@@ -46,60 +46,59 @@ const signin = async (req, res) => {
 };
 
 const addToList = async (req, res) => {
-    const userId = req.user._id; // Assuming you have middleware to extract user from the request
-    const contentId = req.params.id;
-    
-    try {
-        const user = await User.findById(userId);
-        const content = await Content.findById(contentId);
-        
-        if (!user) {
-            return res.status(404).send({ message: 'User not found' });
-        }
-        
-        if (!content) {
-            return res.status(404).send({ message: 'Content not found' });
-        }
-        
-        // Add the content to the user's list
-        user.myList.push(content);
-        await user.save();
-        
-        res.status(201).send({ message: 'Content added to user list successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: 'Internal server error' });
+  const userId = req.user._id;
+  const contentId = req.params.id;
+
+  try {
+    const user = await User.findById(userId);
+    const content = await Content.findById(contentId);
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
     }
-}
+
+    if (!content) {
+      return res.status(404).send({ message: "Content not found" });
+    }
+
+    user.list.push(content._id);
+    await user.save();
+
+    res
+      .status(201)
+      .send({ message: "Content added to user list successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
 
 const removeFromList = async (req, res) => {
-    const userId = req.user._id; // Assuming you have middleware to extract user from the request
-    const contentId = req.params.id;
-    
-    try {
-        const user = await User.findById(userId);
-        const content = await Content.findById(contentId);
-        
-        if (!user) {
-            return res.status(404).send({ message: 'User not found' });
-        }
-        
-        if (!content) {
-            return res.status(404).send({ message: 'Content not found' });
-        }
-        
-        // Remove the content from the user's list
-        const index = user.myList.indexOf(contentId);
-        if (index !== -1) {
-            user.myList.splice(index, 1);
-        }
-        await user.save();
-        
-        res.status(200).send({ message: 'Content removed from user list successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: 'Internal server error' });
-    }
-}
+  const userId = req.user._id;
+  const contentId = req.params.id;
 
-export { signup, signin, addToList, removeFromList};
+  try {
+    const user = await User.findById(userId);
+    const content = await Content.findById(contentId);
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    if (!content) {
+      return res.status(404).send({ message: "Content not found" });
+    }
+
+    user.list = user.list.filter((item) => item._id != content._id);
+    await user.save();
+
+    res
+      .status(200)
+      .send({ message: "Content removed from user list successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+export { signup, signin, addToList, removeFromList };

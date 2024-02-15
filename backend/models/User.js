@@ -7,11 +7,13 @@ const userschema = new mongoose.Schema(
     password: { type: String, required: true },
     isAdmin: { type: Boolean, required: true },
     profilePicture: { type: String },
-    list: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Content",
-      required: true,
-    }]
+    list: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Content",
+        required: true,
+      },
+    ],
   },
   {
     timestamps: true,

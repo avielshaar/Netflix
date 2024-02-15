@@ -12,7 +12,7 @@ const seedData = async (req, res) => {
     const users = await User.insertMany(data.users, { ordered: false });
     const content = await Content.insertMany(data.content, { ordered: false });
 
-    const lists = await getLists()
+    const lists = await getLists();
     await List.insertMany(lists, { ordered: false });
 
     res.status(200).send("Data seeded successfully");
@@ -24,7 +24,7 @@ const seedData = async (req, res) => {
 
 async function getLists() {
   const lists = [];
-  
+
   for (const listName of listMovieNames) {
     const randomContent = shuffleContent(
       await Content.find({ isSeries: false })
