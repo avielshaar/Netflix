@@ -6,6 +6,8 @@ import './App.css'
 import Header from './components/shared/Header/Header.jsx'
 import FrontPage from './pages/FrontPage.jsx'
 import Navbar from './components/shared/Navbar/Navbar.jsx'
+import SignIn from './pages/SignIn.jsx'
+import SignUp from './pages/SignUp.jsx'
 
 function App() {
   
@@ -18,9 +20,9 @@ function App() {
       {/* {localStorage.getItem("userInfo")?<Navbar></Navbar>:<Header></Header>} */}
       <main>        
           <Routes>
+            <Route path = "/signin" element = {<SignIn/>}></Route>
+            <Route path = "/signUp" element = {<SignUp/>}></Route>
             <Route path = "/" element = {<FrontPage/>}></Route>
-            {/* <Route path = "/signin" element = {<SignIn/>}></Route>
-            <Route path = "/signUp" element = {<SignUp/>}></Route> */}
            
           </Routes>
        

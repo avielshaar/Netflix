@@ -5,7 +5,7 @@ const FrontPage = () => {
   return (        
     <div className="home">
        <div className="center"><Header></Header></div>
-
+FrontPage Works
     </div>
 
   )

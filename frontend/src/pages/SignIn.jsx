@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
-import Title from "../Components/Shared/Title";
+import Title from "../components/shared/Title";
 import Form from "react-bootstrap/Form";
 import { Button, Link, toast } from "../imports";
 import { getError } from "../utils";
