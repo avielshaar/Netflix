@@ -1,59 +1,34 @@
-import React, { useState } from "react";
-import "./header.scss";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import { useContext } from "react";
-import { Store } from "../../../Store";
-import { USER_SIGNOUT } from "../../../actions";
+import headerReducer from "../../../reducers/headerReducer";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import "./Header.scss";
 
-const Header = () => {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const signOutHandler = () => {
-    ctxDispatch({ type: USER_SIGNOUT });
-  };
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true);
-    return () => (window.onscroll = null);
-  };
+const Header = ({ title, genres }) => {
 
   return (
-    <div className={isScrolled ? "navbar scrolled" : "navbar"}>
-      <div className="container">
-        <div className="left">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
-            alt=""
-          />         
-        </div>
-        <div className="right">
-          <SearchIcon className="icon" />
-          
-          <NotificationsIcon className="icon" />
-          <img
-            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-          />
-          <div className="profile">
-            <ArrowDropDownIcon className="icon" />
-            <div className="options">
-              <span>Settings</span>
-              <span onClick={signOutHandler}>Logout</span>
-            </div>
-          </div>
-        </div>
+    <header className="header">
+      <div className="left">
+        <h1 className="title">{title}</h1>
+        <select className="genre-selector">
+          {genres.map((genre, index) => (
+            <option key={index} value={genre}>
+              {genre}
+            </option>
+          ))}
+        </select>
       </div>
-    </div>
+      <div className="right">
+        <button className="button">Button 1</button>
+        <button className="button">Button 2</button>
+      </div>
+    </header>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Header;

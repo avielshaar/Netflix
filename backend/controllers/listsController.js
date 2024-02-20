@@ -1,7 +1,7 @@
 import List from "../models/List.js";
 
 const getLists = async (req, res) => {
-  const lists = await List.find();
+  const lists = await List.find().populate("content");
   res.send(lists);
 };
 

@@ -1,0 +1,10 @@
+.ContentPage {
+  padding: 20px;
+  text-align: center;
+}
+
+.ContentPage-lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
