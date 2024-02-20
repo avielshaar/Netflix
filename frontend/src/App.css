@@ -5,3 +5,15 @@
 .min-width {
   min-width: 400px !important;
 }
+
+
+@font-face {
+  font-family: 'netflixFont'; /* Choose a name for your font */
+  src: local('netflixFont'), url('./fonts/NetflixSans-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'netflixFont', sans-serif; /* Set the custom font as the default for the entire application */
+}
