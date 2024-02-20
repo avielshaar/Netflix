@@ -10,4 +10,9 @@ const getSeriesLists = async (req, res) => {
   res.send(lists);
 };
 
-export { getMovieLists, getSeriesLists };
+const getLatestLists = async (req, res) => {
+
+
+}
+
+export { getMovieLists, getSeriesLists, getLatestLists };
