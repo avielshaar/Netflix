@@ -7,6 +7,7 @@ const signIn = async (req, res) => {
   const { password: passwordFromWebsite, email } = req.body;
 
   const user = await User.findOne({ email: email });
+  
   if (user) {
     if (bcrypt.compareSync(passwordFromWebsite, user.password)) {
       res.send({
