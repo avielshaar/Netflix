@@ -3,12 +3,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
 import { Container } from './imports.js'
 import './App.css'
-import Header from './components/shared/Header/Header.jsx'
+
 import FrontPage from './pages/frontPage/FrontPage.jsx'
 import Navbar from './components/shared/Navbar/Navbar.jsx'
 import SignIn from './pages/SignIn.jsx'
 import SignUp from './pages/SignUp.jsx'
-import HomePage from "./pages/homePage/HomePage.jsx";
+import ContentPage from "./pages/contentPage/ContentPage.jsx";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<FrontPage />}></Route>
             <Route path = "/signin" element = {<SignIn/>}></Route>
             <Route path = "/signUp" element = {<SignUp/>}></Route>
-            <Route path = "/Home" element = {<HomePage/>}></Route>
+            <Route path = "/Home" element = {<ContentPage/>}></Route>
           </Routes>
         </main>
         {/* <Footer/> */}

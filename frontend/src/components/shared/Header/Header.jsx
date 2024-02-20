@@ -1,8 +1,8 @@
-import headerReducer from "../../../reducers/headerReducer";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import "./Header.scss";
+import "./header.scss";
 
 const Header = ({ title, genres }) => {
 
