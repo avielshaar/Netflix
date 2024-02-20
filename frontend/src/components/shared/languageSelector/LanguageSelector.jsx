@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./LanguageSelector.scss"
 
 const LanguageSelector = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('en-IL'); // Default selected language
@@ -11,14 +12,15 @@ const LanguageSelector = () => {
     <select
       id="1c250a65fd3ff"
       name="LanguageSelect"
-     
+      className='selectz'
+      data-uia="language-picker-header"
       value={selectedLanguage}
       onChange={handleLanguageChange}
     >
-      <option lang="he" value="he-IL">
+      <option lang="he" label="עברית" value="he-IL">
         עברית
       </option>
-      <option lang="en" value="en-IL">
+      <option lang="en" label="English" value="en-IL">
         English
       </option>
     </select>
