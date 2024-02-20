@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
-import { Container } from "./imports.js";
-import "./App.css";
-import Header from "./components/shared/Header/Header.jsx";
-import FrontPage from "./pages/frontPage/FrontPage.jsx";
-import Navbar from "./components/shared/Navbar/Navbar.jsx";
+import { Container } from './imports.js'
+import './App.css'
+import Header from './components/shared/Header/Header.jsx'
+import FrontPage from './pages/FrontPage.jsx'
+import Navbar from './components/shared/Navbar/Navbar.jsx'
+import SignIn from './pages/SignIn.jsx'
+import SignUp from './pages/SignUp.jsx'
 
 function App() {
   return (
