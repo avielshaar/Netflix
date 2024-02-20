@@ -6,6 +6,6 @@ import { isAuth } from "../utils.js";
 const listsRouter = express.Router();
 listsRouter.post('/movies', isAuth, expressAsyncHandler(getMovieLists));
 listsRouter.post('/series', isAuth, expressAsyncHandler(getSeriesLists));
-listsRouter.post('/newAndPopular', isAuth, expressAsyncHandler(getNewAndPopularLists));
+listsRouter.post('/newandpopular', isAuth, expressAsyncHandler(getNewAndPopularLists));
 
 export default listsRouter;
