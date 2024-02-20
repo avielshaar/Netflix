@@ -3,7 +3,27 @@ import Content from "../models/Content.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils.js";
 
-const signup = async (req, res) => {
+const signIn = async (req, res) => {
+  const { password: passwordFromWebsite, email } = req.body;
+
+  const user = await User.findOne({ email: email });
+  if (user) {
+    if (bcrypt.compareSync(passwordFromWebsite, user.password)) {
+      res.send({
+        _id: user._id,
+        userName: user.name,
+        email: user.email,
+        profilePicture: user.profilePicture,
+        list: user.list,
+        token: generateToken(user),
+      });
+      return;
+    }
+  }
+  res.status(401).send({ message: "Invalid User/Password" });
+};
+
+const signUp = async (req, res) => {
   const { userName, email, password, profilePicture } = req.body;
 
   const newUser = new User({
@@ -23,26 +43,6 @@ const signup = async (req, res) => {
     profilePicture: user.profilePicture,
     token: generateToken(user),
   });
-};
-
-const signin = async (req, res) => {
-  const { password: passwordFromWebsite, email } = req.body;
-
-  const user = await User.findOne({ email: email });
-  if (user) {
-    if (bcrypt.compareSync(passwordFromWebsite, user.password)) {
-      res.send({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        profilePicture: user.profilePicture,
-        list: user.list,
-        token: generateToken(user),
-      });
-      return;
-    }
-  }
-  res.status(401).send({ message: "Invalid User/Password" });
 };
 
 const addToList = async (req, res) => {
@@ -101,4 +101,4 @@ const removeFromList = async (req, res) => {
   }
 };
 
-export { signup, signin, addToList, removeFromList };
+export { signIn, signUp, addToList, removeFromList };
