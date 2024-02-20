@@ -5,7 +5,7 @@ import { isAuth } from "../utils.js";
 
 const listsRouter = express.Router();
 
-listsRouter.get('/', expressAsyncHandler(getLists));
+listsRouter.get('/', isAuth, expressAsyncHandler(getLists));
 listsRouter.get('/movies', isAuth, expressAsyncHandler(getMovieLists));
 listsRouter.get('/series', isAuth, expressAsyncHandler(getSeriesLists));
 listsRouter.get('/newandpopular', isAuth, expressAsyncHandler(getNewAndPopularLists));
