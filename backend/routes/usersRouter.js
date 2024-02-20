@@ -5,7 +5,7 @@ import {signin, signup, addToList, removeFromList} from "../controllers/usersCon
 const usersRouter = express.Router();
 usersRouter.post('/signin', expressAsyncHandler(signin));
 usersRouter.post('/signup', expressAsyncHandler(signup));
-usersRouter.post('/addToList/:id', expressAsyncHandler(addToList))
-usersRouter.post('/removeFromList/:id', expressAsyncHandler(removeFromList))
+usersRouter.post('/addtolist/:id', expressAsyncHandler(addToList))
+usersRouter.post('/removefromlist/:id', expressAsyncHandler(removeFromList))
 
 export default usersRouter;
