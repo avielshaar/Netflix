@@ -18,7 +18,7 @@ const SignIn = () => {
   const { search } = useLocation();
   const redirectUrl = new URLSearchParams(search);
   const redirectValue = redirectUrl.get("redirect");
-  const redirect = redirectValue ? redirectValue : "/";
+  const redirect = redirectValue ? redirectValue : "/Home";
 
   useEffect(() => {
     if (userInfo) navigate(redirect);

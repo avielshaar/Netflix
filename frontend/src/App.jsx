@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<FrontPage />}></Route>
             <Route path = "/signin" element = {<SignIn/>}></Route>
             <Route path = "/signUp" element = {<SignUp/>}></Route>
-            <Route path = "/Home" element = {<ContentPage/>}></Route>
+            <Route path = "/Home" element = {<ContentPage title="Home"/>}></Route>
           </Routes>
         </main>
         {/* <Footer/> */}

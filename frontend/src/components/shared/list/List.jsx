@@ -7,9 +7,9 @@ const List = ({data}) => {
  
  
     return (
-    <div> {data.content.map((content) =>(
-        <div key={content.token} lg={3} md={4} sm={6} xs={12}>
-            <ListItem title={product}/>
+    <div> {data.map((content) =>(
+        <div key={content.id} lg={3} md={4} sm={6} xs={12}>
+            <ListItem title={content.title}/>
         </div>
     ))}</div>
   )
