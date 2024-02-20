@@ -1,4 +1,4 @@
-import Content from "../models/Content.js";
+import List from "../models/List.js";
 
 const getMovieLists = async (req, res) => {
   const lists = await List.find({ isSeries: false });
@@ -10,9 +10,13 @@ const getSeriesLists = async (req, res) => {
   res.send(lists);
 };
 
-const getLatestLists = async (req, res) => {
+const getNewAndPopularLists = async (req, res) => {
+  const lists = [];
+  lists.push(await List.find({ title: "New movies" }));
+  lists.push(await List.find({ title: "New series" }));
+  lists.push(await List.find({ title: "Top picks for Movie" }));
+  lists.push(await List.find({ title: "Top Series" }));
+  res.send(lists);
+};
 
-
-}
-
-export { getMovieLists, getSeriesLists, getLatestLists };
+export { getMovieLists, getSeriesLists, getNewAndPopularLists };

@@ -24,34 +24,46 @@ const seedData = async (req, res) => {
 
 async function getLists() {
   const lists = [];
+  const content = await Content.find();
 
+  //movies
   for (const listName of listMovieNames) {
-    const randomContent = shuffleContent(
-      await Content.find({ isSeries: false })
-    ).slice(0, 7);
-
-    const list = {
+    lists.push({
       title: listName,
-      content: randomContent.map((item) => item._id),
+      content: shuffleContent(content.find({ isSeries: false })).slice(0, 7),
       isSeries: false,
-    };
-
-    lists.push(list);
+    });
   }
 
+  //series
   for (const listName of listSeriesNames) {
-    const randomContent = shuffleContent(
-      await Content.find({ isSeries: true })
-    ).slice(0, 7);
-
-    const list = {
+    lists.push({
       title: listName,
-      content: randomContent.map((item) => item._id),
+      content: shuffleContent(content.find({ isSeries: true })).slice(0, 7),
       isSeries: true,
-    };
-
-    lists.push(list);
+    });
   }
+
+  //new
+  lists.push(
+    {
+      title: "New movies",
+      content: conetnt
+        .find({ isSeries: false })
+        .map((item) => item.year)
+        .slice(0, 7),
+      isSeries: false,
+    },
+    {
+      title: "New series",
+      content: conetnt
+        .find({ isSeries: true })
+        .map((item) => item.year)
+        .slice(0, 7),
+      isSeries: true,
+    }
+  );
+
   return lists;
 }
 
