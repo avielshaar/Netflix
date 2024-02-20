@@ -1,5 +1,10 @@
 import List from "../models/List.js";
 
+const getLists = async (req, res) => {
+  const lists = await List.find();
+  res.send(lists);
+};
+
 const getMovieLists = async (req, res) => {
   const lists = await List.find({ isSeries: false });
   res.send(lists);
@@ -19,4 +24,4 @@ const getNewAndPopularLists = async (req, res) => {
   res.send(lists);
 };
 
-export { getMovieLists, getSeriesLists, getNewAndPopularLists };
+export { getLists, getMovieLists, getSeriesLists, getNewAndPopularLists };
