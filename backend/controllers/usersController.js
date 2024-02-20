@@ -32,7 +32,7 @@ const signUp = async (req, res) => {
     email: email,
     password: bcrypt.hashSync(password),
     isAdmin: false,
-    profilePicture: profilePicture,
+    profilePicture: profilePicture
   });
 
   const user = await newUser.save();
@@ -42,7 +42,7 @@ const signUp = async (req, res) => {
     name: user.name,
     email: user.email,
     profilePicture: user.profilePicture,
-    token: generateToken(user),
+    token: generateToken(user)
   });
 };
 
