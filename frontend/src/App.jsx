@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Container } from './imports.js'
 import './App.css'
 import Header from './components/shared/Header/Header.jsx'
-import FrontPage from './pages/FrontPage.jsx'
+import FrontPage from './pages/frontPage/FrontPage.jsx'
 import Navbar from './components/shared/Navbar/Navbar.jsx'
 import SignIn from './pages/SignIn.jsx'
 import SignUp from './pages/SignUp.jsx'
