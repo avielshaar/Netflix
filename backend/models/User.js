@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const userschema = new mongoose.Schema(
   {
@@ -10,7 +10,7 @@ const userschema = new mongoose.Schema(
     list: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Content",
+        ref: 'Content',
         required: true,
       },
     ],
@@ -20,5 +20,5 @@ const userschema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userschema);
+const User = mongoose.model('User', userschema);
 export default User;

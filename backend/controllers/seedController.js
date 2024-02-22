@@ -1,7 +1,7 @@
-import User from "../models/user.js";
-import Content from "../models/Content.js";
-import List from "../models/List.js";
-import { data, listMovieNames, listSeriesNames } from "../data.js";
+import User from '../models/user.js';
+import Content from '../models/Content.js';
+import List from '../models/List.js';
+import { data, listMovieNames, listSeriesNames } from '../data.js';
 
 const seedData = async (req, res) => {
   try {
@@ -15,10 +15,10 @@ const seedData = async (req, res) => {
     const lists = await getLists();
     await List.insertMany(lists, { ordered: false });
 
-    res.status(200).send("Data seeded successfully");
+    res.status(200).send('Data seeded successfully');
   } catch (error) {
-    console.error("Error seeding data:", error);
-    res.status(500).send("Internal server error");
+    console.error('Error seeding data:', error);
+    res.status(500).send('Internal server error');
   }
 };
 
@@ -47,7 +47,7 @@ async function getLists() {
   //new
   lists.push(
     {
-      title: "New movies",
+      title: 'New movies',
       content: conetnt
         .find({ isSeries: false })
         .map((item) => item.year)
@@ -55,7 +55,7 @@ async function getLists() {
       isSeries: false,
     },
     {
-      title: "New series",
+      title: 'New series',
       content: conetnt
         .find({ isSeries: true })
         .map((item) => item.year)
