@@ -1,7 +1,7 @@
-import express from "express";
-import expressAsyncHandler from "express-async-handler";
-import { getLists, getMovieLists, getSeriesLists, getNewAndPopularLists } from "../controllers/listsController.js";
-import { isAuth } from "../utils.js";
+import express from 'express';
+import expressAsyncHandler from 'express-async-handler';
+import { getLists, getMovieLists, getSeriesLists, getNewAndPopularLists } from '../controllers/listsController.js';
+import { isAuth } from '../utils.js';
 
 const listsRouter = express.Router();
 

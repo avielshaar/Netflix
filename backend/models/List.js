@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const listSchema = new mongoose.Schema(
   {
@@ -6,7 +6,7 @@ const listSchema = new mongoose.Schema(
     content: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Content",
+        ref: 'Content',
         required: true,
       },
     ],
@@ -17,5 +17,5 @@ const listSchema = new mongoose.Schema(
   }
 );
 
-const List = mongoose.model("List", listSchema);
+const List = mongoose.model('List', listSchema);
 export default List;
