@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const ContentSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
@@ -16,5 +16,5 @@ const ContentSchema = new mongoose.Schema({
   isSeries: { type: Boolean, required: true },
 });
 
-const Content = mongoose.model("Content", ContentSchema);
+const Content = mongoose.model('Content', ContentSchema);
 export default Content;
