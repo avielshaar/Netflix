@@ -13,7 +13,7 @@ import ContentPage from "./pages/contentPage/ContentPage.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className="home">
         {/* <ToastContainer position='bottom-center' limit={1}/> */}
         {/* {localStorage.getItem("userInfo")?<Navbar></Navbar>:<Header></Header>} */}
         <main>

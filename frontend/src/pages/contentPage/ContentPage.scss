@@ -8,3 +8,9 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
+.page{
+  background-color: black;
+  overflow: auto !important; 
+  max-height: 100vh;
+}

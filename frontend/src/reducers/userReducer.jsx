@@ -13,6 +13,7 @@ const userReducer = (state, { type, payload }) => {
         userInfo: null ,
         myList:[],
     };
+    
     }      
     default:
       return { ...state };

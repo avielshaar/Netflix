@@ -1,10 +1,4 @@
-  
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-  }
+
 
   @media screen and (max-width:800px){
     h1{font-size: 32px !important;}
@@ -36,7 +30,9 @@
   
   .register {
     width: 100vw;
-    height: 100vh;
+    height: 97vh;
+    overflow: hidden !important;
+    text-align: center;
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0) 0%,
