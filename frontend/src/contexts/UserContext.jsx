@@ -4,7 +4,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const get = () => {
-    return localStorage.getItem('userInfo');
+    return JSON.parse(localStorage.getItem('userInfo'));
   };
 
   const save = (data) => {
@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const remove = () => {
-    localStorage.setItem('userInfo', null);
+    localStorage.removeItem('userInfo');
   };
 
   return <UserContext.Provider value={{ get, save, remove }}>{children}</UserContext.Provider>;

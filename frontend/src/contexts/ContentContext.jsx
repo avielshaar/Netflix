@@ -1,18 +1,20 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
+
+import axios from 'axios';
 
 const ContentContext = createContext();
 
-export const ContentProvider = ({ children, userInfo }) => {
+export const ContentProvider = ({ children }) => {
   const [genres, setGenres] = useState([]);
   const [lists, setLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const getData = async (title) => {
+  const getData = async (title, userInfo) => {
     try {
       setLoading(true);
       if (title === 'Movies' || title === 'Series') {
-        const { data } = await axios.get('/api/v1/content/genres', {
+        const { data } = await axios.get('/api/v1/genres', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         setGenres(data);
@@ -20,22 +22,22 @@ export const ContentProvider = ({ children, userInfo }) => {
       let response = [];
       switch (title) {
         case 'Home':
-          response = await axios.get('/api/v1/content/lists/', {
+          response = await axios.get('/api/v1/lists', {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
           break;
         case 'Movies':
-          response = await axios.get('/api/v1/content/lists/movies', {
+          response = await axios.get('/api/v1/lists/movies', {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
           break;
         case 'Series':
-          response = await axios.get('/api/v1/content/lists/series', {
+          response = await axios.get('/api/v1/lists/series', {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
           break;
         case 'New & Popular':
-          response = await axios.get('/api/v1/content/lists/newandpopular', {
+          response = await axios.get('/api/v1/lists/newandpopular', {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
           break;
