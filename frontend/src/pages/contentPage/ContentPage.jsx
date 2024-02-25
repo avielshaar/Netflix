@@ -1,14 +1,11 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import List from '../../components/shared/list/List.jsx';
-import axios from 'axios';
 import Header from '../../components/shared/header/Header.jsx';
 import './ContentPage.scss';
 import { useUser } from '../../contexts/UserContext.jsx';
 import { useContent } from '../../contexts/ContentContext.jsx';
 
 const ContentPage = ({ title }) => {
-  // const [genres, setGenres] = useState([]);
-  // const [lists, setLists] = useState([]);
   const { get, save, remove } = useUser();
   const userInfo = get();
   const { genres, lists, loading, error, getData } = useContent();
