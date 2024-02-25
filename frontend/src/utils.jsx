@@ -1,4 +1,6 @@
 const getError = (error) => {
+  console.log('at getError');
+  console.log(error);
   return error.message && error.response.data.message ? error.response.data.message : error.message;
 };
 

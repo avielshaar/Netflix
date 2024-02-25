@@ -1,34 +1,22 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const UserContext = createContext();
 
-export const useUser = () => useContext(UserContext);
-
 export const UserProvider = ({ children }) => {
-  const initialState = {
-    userInfo: null,
+  const get = () => {
+    return localStorage.getItem('userInfo');
   };
 
-  const userReducer = (state, action) => {
-    switch (action.type) {
-      case 'USER_SIGNIN':
-        return {
-          ...state,
-          userInfo: action.payload,
-        };
-      case 'USER_SIGNOUT':
-        return {
-          ...state,
-          userInfo: null,
-        };
-      default:
-        return state;
-    }
+  const save = (data) => {
+    localStorage.setItem('userInfo', JSON.stringify(data));
   };
 
-  const [state, dispatch] = useReducer(userReducer, initialState);
+  const remove = () => {
+    localStorage.setItem('userInfo', null);
+  };
 
-  return <UserContext.Provider value={{ state, dispatch }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ get, save, remove }}>{children}</UserContext.Provider>;
 };
 
+export const useUser = () => useContext(UserContext);
 export default UserContext;

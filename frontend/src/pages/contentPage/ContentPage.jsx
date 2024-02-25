@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import List from "../../components/shared/list/List.jsx";
-import axios from "axios";
-import Header from "../../components/shared/Header/Header.jsx";
-import "./ContentPage.scss";
-import { Store } from "../../Store.jsx";
-import { useContext } from "react";
+import React, { useEffect, useState } from 'react';
+import List from '../../components/shared/list/List.jsx';
+import axios from 'axios';
+import Header from '../../components/shared/Header/Header.jsx';
+import './ContentPage.scss';
+import { useUser } from '../../contexts/UserContext.jsx';
 
 const ContentPage = ({ title }) => {
   const [genres, setGenres] = useState([]);
   const [lists, setLists] = useState([]);
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
+  const { get, save, remove } = useUser();
+  const userInfo = get();
 
   useEffect(() => {
     const getGenres = async () => {
-      const { data } = await axios.get("/api/v1/content/genres", {
+      const { data } = await axios.get('/api/v1/content/genres', {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
       setGenres(data);
@@ -22,8 +21,8 @@ const ContentPage = ({ title }) => {
     };
 
     const getLists = async () => {
-      if (title === "Home") {
-        const { data } = await axios.get("/api/v1/lists", {
+      if (title === 'Home') {
+        const { data } = await axios.get('/api/v1/lists', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         setLists(data);
@@ -43,16 +42,16 @@ const ContentPage = ({ title }) => {
   }, []);
 
   return (
-    <div className="page">
+    <div className='page'>
       {/* <div className="page-header">
         <Header title={title} genres={genres} />
       </div> */}
-      <div className="page-lists">
+      <div className='page-lists'>
         {lists.map((list) => (
           <div key={list.title}>
             <List title={list.title} data={list.content} />
-            
-              <br></br>
+
+            <br></br>
           </div>
         ))}
       </div>
