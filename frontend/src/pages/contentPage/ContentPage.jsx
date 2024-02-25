@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import List from '../../components/shared/list/List.jsx';
 import axios from 'axios';
-import Header from '../../components/shared/Header/Header.jsx';
+import Header from '../../components/shared/header/Header.jsx';
 import './ContentPage.scss';
 import { useUser } from '../../contexts/UserContext.jsx';
 import { useContent } from '../../contexts/ContentContext.jsx';

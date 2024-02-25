@@ -1,7 +1,7 @@
 import React from "react";
 import "./FrontPage.scss";
 
-import Header from "../../components/shared/Header/Header";
+import Header from "../../components/shared/header/Header";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import LanguageSelector from "../../components/shared/languageSelector/LanguageSelector";
