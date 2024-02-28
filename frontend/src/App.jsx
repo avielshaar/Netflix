@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <div className='home'>
         {/* <ToastContainer position='bottom-center' limit={1}/> */}
-        {/* {localStorage.getItem("userInfo")?<Navbar></Navbar>:<Header></Header>} */}
+        {/* {localStorage.getItem("userInfo")?<Navbar></Navbar>} */}
         <main>
           <Routes>
             <Route path='/' element={<FrontPage />}></Route>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import List from '../../components/shared/list/List.jsx';
+import Navbar from '../../components/shared/navbar/Navbar.jsx';
 import Header from '../../components/shared/header/Header.jsx';
 import './ContentPage.scss';
 import { useUser } from '../../contexts/UserContext.jsx';
@@ -16,6 +17,10 @@ const ContentPage = ({ title }) => {
 
   return (
     <div className='page'>
+      <div className='page-navbar'>
+        <Navbar />
+        <br/><br/><br/>
+      </div>
       {/* <div className="page-header">
         <Header title={title} genres={genres} />
       </div> */}
@@ -23,8 +28,6 @@ const ContentPage = ({ title }) => {
         {lists.map((list) => (
           <div key={list.title}>
             <List title={list.title} data={list.content} />
-
-            <br></br>
           </div>
         ))}
       </div>

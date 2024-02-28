@@ -13,7 +13,6 @@ const Navbar = () => {
   const location = useLocation();
 
   const signOutHandler = () => {
-    // ctxDispatch({ type: USER_SIGNOUT });
     remove();
   };
 
@@ -33,11 +32,21 @@ const Navbar = () => {
               <img className='logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png' alt='' />
             </Link>
           </div>
-          <span>Homepage</span>
-          <span>Series</span>
-          <span>Movies</span>
-          <span>New and Popular</span>
-          <span>My List</span>
+          <Link to='/home'>
+            <span>Homepage</span>
+          </Link>
+          <Link to='/movies'>
+            <span>Movies</span>
+          </Link>
+          <Link to='/series'>
+            <span>TV Shows</span>
+          </Link>
+          <Link to='/newandpopular'>
+            <span>New & Popular</span>
+          </Link>
+          <Link to='/'>
+            <span>My list</span>
+          </Link>
         </div>
         <div className='right'>
           <SearchIcon className='icon' />
