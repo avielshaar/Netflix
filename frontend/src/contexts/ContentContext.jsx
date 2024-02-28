@@ -9,8 +9,10 @@ export const ContentProvider = ({ children }) => {
   const [lists, setLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { get, save, remove } = useUser();
+  const userInfo = get();
 
-  const getData = async (title, userInfo) => {
+  const getData = async (title) => {
     try {
       setLoading(true);
       if (title === 'Movies' || title === 'Series') {

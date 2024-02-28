@@ -13,13 +13,16 @@ const ContentPage = ({ title }) => {
 
   useEffect(() => {
     getData(title, userInfo);
-  }, []);
+  }, [title]);
 
   return (
     <div className='page'>
       <div className='page-navbar'>
         <Navbar />
-        <br/><br/><br/>
+        <br />
+        <br />
+        <br />
+        <h1>{title}</h1>
       </div>
       {/* <div className="page-header">
         <Header title={title} genres={genres} />
