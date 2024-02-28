@@ -18,7 +18,7 @@ const seedData = async (req, res) => {
     res.status(200).send('Data seeded successfully');
   } catch (error) {
     console.error('Error seeding data:', error);
-    res.status(500).send('Internal server error');
+    res.status(500).send(error.message);
   }
 };
 
@@ -26,43 +26,44 @@ async function getLists() {
   const lists = [];
   const content = await Content.find();
 
-  //movies
+  // movies
   for (const listName of listMovieNames) {
     lists.push({
       title: listName,
-      content: shuffleContent(content.find({ isSeries: false })).slice(0, 7),
+      content: shuffleContent(content.filter(item => !item.isSeries)).slice(0, 7),
       isSeries: false,
     });
   }
 
-  //series
+  // series
   for (const listName of listSeriesNames) {
     lists.push({
       title: listName,
-      content: shuffleContent(content.find({ isSeries: true })).slice(0, 7),
+      content: shuffleContent(content.filter(item => item.isSeries)).slice(0, 7),
       isSeries: true,
     });
   }
 
-  //new
-  lists.push(
-    {
-      title: 'New movies',
-      content: conetnt
-        .find({ isSeries: false })
-        .map((item) => item.year)
-        .slice(0, 7),
-      isSeries: false,
-    },
-    {
-      title: 'New series',
-      content: conetnt
-        .find({ isSeries: true })
-        .map((item) => item.year)
-        .slice(0, 7),
-      isSeries: true,
-    }
-  );
+
+  // new
+  // lists.push(
+  //   {
+  //     title: 'New movies',
+  //     content: content
+  //       .find({ isSeries: false })
+  //       .map((item) => item.year)
+  //       .slice(0, 7),
+  //     isSeries: false,
+  //   },
+  //   {
+  //     title: 'New series',
+  //     content: content
+  //       .find({ isSeries: true })
+  //       .map((item) => item.year)
+  //       .slice(0, 7),
+  //     isSeries: true,
+  //   }
+  // );
 
   return lists;
 }

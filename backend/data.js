@@ -11,6 +11,7 @@ export const genres = [
 
 export const listMovieNames = [
   "Top picks for Movie",
+  "New Movies",
   "Movies for your friend Steve",
   "Kid-Friendly Movies",
   "Action Movies",
@@ -19,6 +20,7 @@ export const listMovieNames = [
 ];
 export const listSeriesNames = [
   "Top Series",
+  "New Series",
   "Crime Series",
   "Sci-Fi Series",
   "Reality Series",

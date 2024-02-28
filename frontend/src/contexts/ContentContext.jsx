@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 
 import axios from 'axios';
+import { useUser } from './UserContext';
 
 const ContentContext = createContext();
 
@@ -16,7 +17,7 @@ export const ContentProvider = ({ children }) => {
     try {
       setLoading(true);
       if (title === 'Movies' || title === 'Series') {
-        const { data } = await axios.get('/api/v1/genres', {
+        const { data } = await axios.get('/api/v1/content/genres', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         setGenres(data);
