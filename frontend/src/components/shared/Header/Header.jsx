@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./header.scss";
 
-const Header = ( title, genres ) => {
+const Header = ( {title, genres} ) => {
 
   return (
     <header className="header">
