@@ -30,7 +30,7 @@
   
   .register {
     width: 100vw;
-    height: 97vh;
+    height: 98vh;
     overflow: hidden !important;
     text-align: center;
     background: linear-gradient(
@@ -40,6 +40,7 @@
       ),
       url("https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1024x576.jpg");
     background-size: cover;
+    background-origin: border-box;
     position: relative;
     
   
@@ -86,7 +87,11 @@
         color: white;
     
         h1 {
-          font-size: 300%;
+          font-size: 3rem;
+          font-weight:900;
+          margin: 0;
+          text-align: center;
+          font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
         }
     
         h2 {
