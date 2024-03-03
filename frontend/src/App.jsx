@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import "react-toastify/dist/ReactToastify.css";
 import { Container } from './imports.js';
 import './App.css';
-import Footer from './components/shared/footer/Footer.jsx'
+import Footer from './components/shared/footer/Footer.jsx';
 import FrontPage from './pages/frontPage/FrontPage.jsx';
 import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SignUp.jsx';
@@ -24,10 +24,9 @@ function App() {
             <Route path='/movies' element={<ContentPage title='Movies' />}></Route>
             <Route path='/series' element={<ContentPage title='Series' />}></Route>
             <Route path='/newandpopular' element={<ContentPage title='New & Popular' />}></Route>
-            <Route path='/mylist' element={<ContentPage title='My list' />}></Route>
+            <Route path='/mylist' element={<ContentPage title='My List' />}></Route>
           </Routes>
         </main>
-        <Footer/>
       </div>
     </BrowserRouter>
   );

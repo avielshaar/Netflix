@@ -43,6 +43,10 @@ export const ContentProvider = ({ children }) => {
           response = await axios.get('/api/v1/lists/newandpopular', {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
+          console.log(response.data);
+          break;
+        case 'My List':
+          response.data = [{ title: 'My List', content: userinfo.data }];
           break;
         default:
           break;

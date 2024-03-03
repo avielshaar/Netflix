@@ -44,8 +44,8 @@ const Navbar = () => {
           <Link to='/newandpopular'>
             <span>New & Popular</span>
           </Link>
-          <Link to='/'>
-            <span>My list</span>
+          <Link to='/mylist'>
+            <span>My List</span>
           </Link>
         </div>
         <div className='right'>

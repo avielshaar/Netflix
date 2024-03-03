@@ -7,6 +7,7 @@ import Loading from '../../components/shared/loading/Loading.jsx';
 import MessageBox from '../../components/shared/messageBox/MessageBox.jsx';
 import { useUser } from '../../contexts/UserContext.jsx';
 import { useContent } from '../../contexts/ContentContext.jsx';
+import Footer from '../../components/shared/footer/Footer.jsx';
 
 const ContentPage = ({ title }) => {
   const { get, save, remove } = useUser();
@@ -25,17 +26,21 @@ const ContentPage = ({ title }) => {
         <br />
         <br />
       </div>
-      <div className='page-header'>
-        <Header title={title} genres={genres} />
-        <br />
-      </div>
+      {title === 'Movies' || title === 'Series' ? (
+        <div className='page-header'>
+          <Header title={title} genres={genres} />
+          <br />
+        </div>
+      ) : (
+        ''
+      )}
       <div className='page-content'>
         {loading ? (
           <Loading />
         ) : error ? (
           <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
-          <div className='page-lists'>
+              <div className='page-lists'>
             {lists.map((list) => (
               <div key={list.title}>
                 <List title={list.title} data={list.content} />
@@ -43,6 +48,12 @@ const ContentPage = ({ title }) => {
             ))}
           </div>
         )}
+      </div>
+      <div className='page-footer'>
+        <br />
+        <br />
+        <br />
+        <Footer />
       </div>
     </div>
   );
