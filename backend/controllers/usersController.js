@@ -99,5 +99,38 @@ const removeFromList = async (req, res) => {
     res.status(500).send({ message: 'Internal server error' });
   }
 };
+const getMyList = async (req, res) => {
+  
+  const userId = req.user._id;
+  
 
-export { signIn, signUp, addToList, removeFromList };
+  try {
+    const user = await User.findById(userId);
+    
+
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
+
+    const userWithPopulatedList = await User.findById(userId)
+    .populate({
+      path: 'list',
+      model: 'Content', // Adjust 'Content' to the actual model name
+    })
+    .exec();
+  
+  const list = userWithPopulatedList.list;
+  
+
+    console.log(list);
+    res.status(200).send(list);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Internal server error' });
+  }
+};
+
+
+
+export { signIn, signUp, addToList, removeFromList ,getMyList};

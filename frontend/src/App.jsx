@@ -25,6 +25,7 @@ function App() {
             <Route path='/fullscreen/:videoId' element={<FullScreenVideo />}></Route> 
 
             <Route path='/home' element={<ContentPage title='Home' />}></Route>
+            <Route path='/myList' element={<ContentPage title='My List' />}></Route>
             <Route path='/movies' element={<ContentPage title='Movies' />}></Route>
             <Route path='/series' element={<ContentPage title='Series' />}></Route>
             <Route path='/newandpopular' element={<ContentPage title='New & Popular' />}></Route>

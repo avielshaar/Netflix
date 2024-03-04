@@ -16,8 +16,9 @@ const ContentPage = ({ title }) => {
 
   useEffect(() => {
     getData(title, userInfo);
+    
   }, [title]);
-
+  
   return (
     <div className='page'>
       <div className='page-navbar'>
