@@ -47,8 +47,10 @@ const signUp = async (req, res) => {
 };
 
 const addToList = async (req, res) => {
+
   const userId = req.user._id;
   const contentId = req.params.id;
+ 
 
   try {
     const user = await User.findById(userId);
@@ -64,7 +66,7 @@ const addToList = async (req, res) => {
 
     user.list.push(content._id);
     await user.save();
-
+    console.log("content added to my list");
     res.status(201).send({ message: 'Content added to user list successfully' });
   } catch (error) {
     console.error(error);
