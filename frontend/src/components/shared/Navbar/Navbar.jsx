@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
-import './Navbar.scss';
-import { Link, useNavigate } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useUser } from '../../../contexts/UserContext.jsx';
+import React, { useState,useEffect } from "react";
+import "./Navbar.scss";
+import { Link, useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useUser } from "../../../contexts/UserContext.jsx";
 
 const Navbar = () => {
   const { get, remove } = useUser();
   const userInfo = get();
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const signOutHandler = () => {
     remove();
-    navigate('/');
+    navigate("/");
   };
 
-  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const scrollableElement = document.getElementById("page");
+    if (scrollableElement) {
+      const handleScroll = () => {
+        setIsScrolled(scrollableElement.scrollTop === 0 ? false : true);
+      };
 
-  window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true);
-    return () => (window.onscroll = null);
-  };
+      scrollableElement.addEventListener("scroll", handleScroll);
+      return () => {
+        scrollableElement.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
 
-  console.log(userInfo);
+
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
@@ -37,30 +45,33 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <Link to='/home' className='nav-item'>
+          <Link to="/home" className="nav-item">
             Homepage
           </Link>
-          <Link to='/movies' className='nav-item'>
+          <Link to="/movies" className="nav-item">
             Movies
           </Link>
-          <Link to='/series' className='nav-item'>
+          <Link to="/series" className="nav-item">
             TV Shows
           </Link>
-          <Link to='/newandpopular' className='nav-item'>
+          <Link to="/newandpopular" className="nav-item">
             New & Popular
           </Link>
-          <Link to='/mylist' className='nav-item'>
+          <Link to="/mylist" className="nav-item">
             My List
           </Link>
         </div>
-        <div className='right'>
-          <SearchIcon className='icon' />
-          <span className='icon'>Kids</span>
-          <NotificationsIcon className='icon' />
-          <img src='https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500' alt='' />
-          <div className='profile'>
-            <ArrowDropDownIcon className='icon' />
-            <div className='options'>
+        <div className="right">
+          <SearchIcon className="icon" />
+          <span className="icon">Kids</span>
+          <NotificationsIcon className="icon" />
+          <img
+            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            alt=""
+          />
+          <div className="profile">
+            <ArrowDropDownIcon className="icon" />
+            <div className="options">
               <span>{userInfo.userName}</span>
               <span onClick={signOutHandler}>Logout</span>
             </div>
