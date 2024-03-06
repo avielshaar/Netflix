@@ -10,15 +10,14 @@ import { useContent } from '../../contexts/ContentContext.jsx';
 import Footer from '../../components/shared/footer/Footer.jsx';
 
 const ContentPage = ({ title }) => {
-  const { get, save, remove } = useUser();
+  const { get } = useUser();
   const userInfo = get();
-  const { genres, lists, loading, error, getData,getMyList } = useContent();
+  const { genres, lists, loading, error, getData } = useContent();
 
   useEffect(() => {
     getData(title, userInfo);
-    getMyList();
   }, [title]);
- 
+
   return (
     <div className='page' id='page' >
       <div className='page-navbar'>
