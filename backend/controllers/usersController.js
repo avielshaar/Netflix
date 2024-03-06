@@ -12,7 +12,7 @@ const signIn = async (req, res) => {
     if (bcrypt.compareSync(passwordFromWebsite, user.password)) {
       res.send({
         _id: user._id,
-        userName: user.name,
+        userName: user.userName,
         email: user.email,
         profilePicture: user.profilePicture,
         list: user.list,
@@ -47,10 +47,8 @@ const signUp = async (req, res) => {
 };
 
 const addToList = async (req, res) => {
-
   const userId = req.user._id;
   const contentId = req.params.id;
- 
 
   try {
     const user = await User.findById(userId);
@@ -66,7 +64,7 @@ const addToList = async (req, res) => {
 
     user.list.push(content._id);
     await user.save();
-    console.log("content added to my list");
+    console.log('content added to my list');
     res.status(201).send({ message: 'Content added to user list successfully' });
   } catch (error) {
     console.error(error);
@@ -100,28 +98,23 @@ const removeFromList = async (req, res) => {
   }
 };
 const getMyList = async (req, res) => {
-  
   const userId = req.user._id;
-  
 
   try {
     const user = await User.findById(userId);
-    
 
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
 
-
     const userWithPopulatedList = await User.findById(userId)
-    .populate({
-      path: 'list',
-      model: 'Content', // Adjust 'Content' to the actual model name
-    })
-    .exec();
-  
-  const list = userWithPopulatedList.list;
-  
+      .populate({
+        path: 'list',
+        model: 'Content', // Adjust 'Content' to the actual model name
+      })
+      .exec();
+
+    const list = userWithPopulatedList.list;
 
     console.log(list);
     res.status(200).send(list);
@@ -131,6 +124,4 @@ const getMyList = async (req, res) => {
   }
 };
 
-
-
-export { signIn, signUp, addToList, removeFromList ,getMyList};
+export { signIn, signUp, addToList, removeFromList, getMyList };
