@@ -10,15 +10,14 @@ import { useContent } from '../../contexts/ContentContext.jsx';
 import Footer from '../../components/shared/footer/Footer.jsx';
 
 const ContentPage = ({ title }) => {
-  const { get, save, remove } = useUser();
+  const { get } = useUser();
   const userInfo = get();
-  const { genres, lists, loading, error, getData,getMyList } = useContent();
+  const { genres, lists, loading, error, getData } = useContent();
 
   useEffect(() => {
     getData(title, userInfo);
-    getMyList();
   }, [title]);
-  
+
   return (
     <div className='page'>
       <div className='page-navbar'>
@@ -30,18 +29,19 @@ const ContentPage = ({ title }) => {
       {title === 'Movies' || title === 'Series' ? (
         <div className='page-header'>
           <Header title={title} genres={genres} />
-          <br />
         </div>
       ) : (
         ''
       )}
+      <br />
+      <br />
       <div className='page-content'>
         {loading ? (
           <Loading />
         ) : error ? (
           <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
-              <div className='page-lists'>
+          <div className='page-lists'>
             {lists.map((list) => (
               <div key={list.title}>
                 <List title={list.title} data={list.content} />

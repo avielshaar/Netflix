@@ -1,81 +1,91 @@
-
 .navbar {
-    width: 100%;
-    color: white;
-    font-size: 14px;
-    position: fixed;
-    z-index:999;
-    top: 0;
-    box-sizing: border-box;
-    background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
-  
-    &.scrolled {
-      background-color: var(--main-color);
-    }
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+  background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
+
+  &.scrolled {
+    background-color: var(--main-color);
   }
-  
-  .container {
-    padding: 0px 50px;
-    width:100%;
+}
+
+.container {
+  padding: 0px 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+
+  .left {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 70px;
-  
-    .left {
-      display: flex;
-      
-      align-items: center;
-  
-      img {
-        height: 25px;
-        margin-right: 40px;
-      }
-  
-      span {
-        margin-right: 20px;
-        cursor: pointer;
+
+    img {
+      height: 25px;
+      margin-right: 40px;
+    }
+
+    .nav-item {
+      margin-right: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+
+      &:hover {
+        text-decoration: none;
       }
     }
-  
-    .right {
-      display: flex;
-      align-items: center;
-      margin-right:100px;
-  
-      .icon {
-        margin: 0px 15px;
-        cursor: pointer;
-      }
-  
-      img {
-        width: 30px;
-        height: 30px;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap; 
+    justify-content: flex-end;
+    margin-right: 75px;
+
+    .icon {
+      margin: 0px 15px;
+      cursor: pointer;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .profile {
+      position: relative;
+
+      .options {
+        display: none;
+        background-color: var(--main-color);
         border-radius: 5px;
-        object-fit: cover;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0
+      }
+
+      span {
+        padding: 10px;
         cursor: pointer;
       }
-  
-      .profile {
+
+      &:hover {
         .options {
-          display: none;
-          background-color: var(--main-color);
-          border-radius: 5px;
-        }
-  
-        span {
-          padding: 10px;
-          cursor: pointer;
-        }
-  
-        &:hover {
-          .options {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-          }
+          display: flex;
+          flex-direction: column;
+          margin-top: -10px;
         }
       }
     }
   }
-  
+}
