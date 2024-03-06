@@ -32,11 +32,9 @@ const getGenres = async (req, res) => {
 
 const getContentByQuery = async (req, res) => {
   const { query } = req;
-  const page = query.page || 1;
   const order = query.order || '';
   const genre = query.genre || '';
   const searchQuery = query.query || '';
-  const pageSize = query.pageSize || 6;
 
   const queryFilter =
     searchQuery && searchQuery !== 'all'
@@ -62,8 +60,6 @@ const getContentByQuery = async (req, res) => {
     ...genreFilter,
   })
     .sort(sortContentFilter)
-    .skip((page - 1) * pageSize)
-    .limit(pageSize);
 
   const countContent = await Content.countDocuments({
     ...queryFilter,
@@ -73,8 +69,6 @@ const getContentByQuery = async (req, res) => {
   res.send({
     content,
     countContent,
-    page,
-    pages: Math.ceil(countContent / pageSize),
   });
 };
 

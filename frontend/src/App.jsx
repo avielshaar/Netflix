@@ -11,6 +11,7 @@ import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SignUp.jsx';
 import ContentPage from './pages/contentPage/ContentPage.jsx';
 import MyListPage from './pages/myListPage/MyListPage.jsx';
+import SearchPage from './pages/searchPage/SearchPage.jsx';
 
 function App() {
   return (
@@ -22,14 +23,16 @@ function App() {
           <Routes>
             <Route path='/' element={<FrontPage />}></Route>
             <Route path='/signin' element={<SignIn />}></Route>
-            <Route path='/signUp' element={<SignUp />}></Route> 
-            <Route path='/fullscreen/:videoId' element={<FullScreenVideo />}></Route> 
+            <Route path='/signUp' element={<SignUp />}></Route>
+            <Route path='/fullscreen/:videoId' element={<FullScreenVideo />}></Route>
 
             <Route path='/home' element={<ContentPage title='Home' />}></Route>
-            <Route path='/myList' element={<MyListPage/>}></Route>
+            <Route path='/myList' element={<MyListPage />}></Route>
             <Route path='/movies' element={<ContentPage title='Movies' />}></Route>
             <Route path='/series' element={<ContentPage title='Series' />}></Route>
             <Route path='/newandpopular' element={<ContentPage title='New & Popular' />}></Route>
+
+            <Route path='/search' element={<SearchPage/>}></Route>
           </Routes>
         </main>
         {/* <Footer/> */}
