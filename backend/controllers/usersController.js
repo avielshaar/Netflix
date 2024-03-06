@@ -47,15 +47,12 @@ const signUp = async (req, res) => {
 };
 
 const addToList = async (req, res) => {
-
   const userId = req.user._id;
   const contentId = req.params.id;
- 
-
   try {
     const user = await User.findById(userId);
     const content = await Content.findById(contentId);
-
+    
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
@@ -63,10 +60,13 @@ const addToList = async (req, res) => {
     if (!content) {
       return res.status(404).send({ message: 'Content not found' });
     }
-
+    
+    if (user.list.includes(content._id)) {
+      return res.status(400).send({ message: 'Content is already in the user list' });
+    }
+    console.log("added content");
     user.list.push(content._id);
     await user.save();
-    console.log("content added to my list");
     res.status(201).send({ message: 'Content added to user list successfully' });
   } catch (error) {
     console.error(error);
@@ -77,7 +77,7 @@ const addToList = async (req, res) => {
 const removeFromList = async (req, res) => {
   const userId = req.user._id;
   const contentId = req.params.id;
-
+  
   try {
     const user = await User.findById(userId);
     const content = await Content.findById(contentId);
@@ -90,7 +90,8 @@ const removeFromList = async (req, res) => {
       return res.status(404).send({ message: 'Content not found' });
     }
 
-    user.list = user.list.filter((item) => item._id != content._id);
+    user.list = user.list.filter((item) => item._id.toString() !== content._id.toString());
+    console.log('User List after removal:', user.list);
     await user.save();
 
     res.status(200).send({ message: 'Content removed from user list successfully' });
@@ -99,31 +100,22 @@ const removeFromList = async (req, res) => {
     res.status(500).send({ message: 'Internal server error' });
   }
 };
-const getMyList = async (req, res) => {
-  
+
+
+
+const getMyList = async (req, res) => { 
   const userId = req.user._id;
-  
-
   try {
-    const user = await User.findById(userId);
-    
-
+    const user = await User.findById(userId);   
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
-
-
     const userWithPopulatedList = await User.findById(userId)
     .populate({
       path: 'list',
-      model: 'Content', // Adjust 'Content' to the actual model name
-    })
-    .exec();
-  
-  const list = userWithPopulatedList.list;
-  
-
-    console.log(list);
+      model: 'Content', 
+    }).exec();  
+  const list = userWithPopulatedList.list;   
     res.status(200).send(list);
   } catch (error) {
     console.error(error);

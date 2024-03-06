@@ -1,29 +1,28 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from 'react';
+import YouTube from 'react-youtube';
 import "./ListItem.scss";
-import YouTube from "react-youtube";
-import { useState,useContext } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import FullScreenVideo from "../fullScreenVideo/FullScreenVideo";
-import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
+import CheckIcon from '@mui/icons-material/Check';
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-import { useUser } from '../../../contexts/UserContext.jsx';
+import { useContent } from '../../../contexts/ContentContext.jsx';
 
 const ListItem = ({ content }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [delayedHover, setDelayedHover] = useState(null);
-  const { get, save, remove } = useUser();
-  const userInfo = get();
+  const {addItemToMyList,removeItemFromMyList ,myList} = useContent();
+  const hoverTimeoutRef = useRef(null);
+  const hoverStartTimeRef = useRef(null);
+  const [isInMyList, setIsInMyList] = useState();
 
- 
   const opts = {
     height: '100%',
     width: '100%',
     playerVars: {
-      autoplay: 0,
-      
+      autoplay: 1,
+      controls: 0,
+      showinfo: 0,
+      modestbranding: 1,
+      iv_load_policy: 3,
     },
   };
 
@@ -33,34 +32,42 @@ const ListItem = ({ content }) => {
     );
     return match ? match[1] || match[2] : null;
   };
-  const videoID=getYouTubeId(content.trailer);
+  const videoID = getYouTubeId(content.trailer);
 
   const handleMouseEnter = () => {
-    const delay = setTimeout(() => {
-      setIsHovered(true);
-      setDelayedHover(null);
-    }, 500);
-
-    setDelayedHover(delay);
+    hoverStartTimeRef.current = performance.now();
+    hoverTimeoutRef.current = requestAnimationFrame(handleHoverTimeout);
   };
 
   const handleMouseLeave = () => {
-    
-    if (delayedHover) {
-      clearTimeout(delayedHover);
-      setDelayedHover(null);
-    }
+    cancelAnimationFrame(hoverTimeoutRef.current);
     setIsHovered(false);
   };
-  const addItemToMyList=async() => {
-    
-    const { data } = await axios.post(`/api/v1/users/addtolist/${content._id}`,userInfo._id,{
-      headers: { authorization: `Bearer ${userInfo.token}` },
-    });
 
+  const handleHoverTimeout = () => {
+    const elapsedTime = performance.now() - hoverStartTimeRef.current;
+    if (elapsedTime >= 500) {
+      setIsHovered(true);
+    } else {
+      hoverTimeoutRef.current = requestAnimationFrame(handleHoverTimeout);
+    }
   };
-
-
+  
+  const isContentInList = () => {
+    return myList.some((item) => item._id === content._id);
+  };
+  const addItem = async()=>{
+    await addItemToMyList(content);
+  }
+  
+  const removeItem = async()=>{
+    await removeItemFromMyList(content);
+  }
+  
+  useEffect(() => {
+     setIsInMyList(isContentInList());
+  }, [myList]);
+  
 
   return (
     <div
@@ -73,21 +80,21 @@ const ListItem = ({ content }) => {
       )}
       {isHovered && (
         <>
-         <div>
-          <YouTube
-            className="youtube"
-            videoId={videoID}
-            opts={opts}
-          />
+          <div>
+            <YouTube videoId={videoID} opts={opts} />
           </div>
           <div className="itemInfo">
             <div className="icons">
               <Link to={`/fullscreen/${videoID}`}>
               <PlayArrowOutlinedIcon fontSize="large" className="icon"  />
               </Link>
-              <AddOutlinedIcon className="icon" onClick={addItemToMyList} />
-              <ThumbUpOutlinedIcon className="icon" />
-              <ThumbDownOutlinedIcon className="icon" />
+              {isInMyList ? (
+               
+                <CheckIcon className="icon" onClick={removeItem} />
+              ) : (
+                
+                <AddOutlinedIcon className="icon" onClick={addItem} />
+              )}
             </div>
             <div className="itemInfoTop">
               <span>{content.duration}</span>

@@ -12,11 +12,11 @@ import Footer from '../../components/shared/footer/Footer.jsx';
 const ContentPage = ({ title }) => {
   const { get, save, remove } = useUser();
   const userInfo = get();
-  const { genres, lists, loading, error, getData } = useContent();
+  const { genres, lists, loading, error, getData,getMyList } = useContent();
 
   useEffect(() => {
     getData(title, userInfo);
-    
+    getMyList();
   }, [title]);
   
   return (

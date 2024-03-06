@@ -4,6 +4,7 @@
     color: white;
     font-size: 14px;
     position: fixed;
+    z-index:999;
     top: 0;
     box-sizing: border-box;
     background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
@@ -23,6 +24,7 @@
   
     .left {
       display: flex;
+      
       align-items: center;
   
       img {
@@ -39,6 +41,7 @@
     .right {
       display: flex;
       align-items: center;
+      margin-right:100px;
   
       .icon {
         margin: 0px 15px;

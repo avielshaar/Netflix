@@ -1,5 +1,7 @@
 :root{
-  --main-color: #0b0b0b
+  --tw-bg-opacity: 1;
+  
+  --main-color:rgb(25 25 28/var(--tw-bg-opacity))
 }
 
 .min-width {

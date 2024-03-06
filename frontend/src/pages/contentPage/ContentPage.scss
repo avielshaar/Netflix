@@ -10,7 +10,8 @@
 }
 
 .page{
-  background-color: black;
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 25 28/var(--tw-bg-opacity));
   overflow: auto !important; 
   max-height: 100vh;
 }
