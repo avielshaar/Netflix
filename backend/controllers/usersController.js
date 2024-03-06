@@ -12,7 +12,7 @@ const signIn = async (req, res) => {
     if (bcrypt.compareSync(passwordFromWebsite, user.password)) {
       res.send({
         _id: user._id,
-        userName: user.name,
+        userName: user.userName,
         email: user.email,
         profilePicture: user.profilePicture,
         list: user.list,

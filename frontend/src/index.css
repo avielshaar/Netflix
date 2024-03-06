@@ -1,5 +1,14 @@
-.home {
-  
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set height of HTML and body to 100% */
+html, body {
+  height: 100%;
+}
+
+.home { 
   overflow: hidden;
   background: linear-gradient(
       to bottom,
@@ -7,6 +16,7 @@
       rgba(0, 0, 0, 1) 100%
     ),
     url("https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1024x576.jpg");
-  width: 100vw;
-  height: 97vh;
+    background-size: cover;
+    width: 100%;
+    height: calc(100vh); 
 }
