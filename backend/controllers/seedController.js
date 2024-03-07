@@ -1,4 +1,4 @@
-import User from '../models/user.js';
+import User from '../models/User.js';
 import Content from '../models/Content.js';
 import List from '../models/List.js';
 import { data, listMovieNames, listSeriesNames } from '../data.js';
