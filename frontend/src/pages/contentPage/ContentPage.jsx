@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import List from '../../components/shared/list/List.jsx';
-import Navbar from '../../components/shared/navbar/Navbar.jsx';
-import Header from '../../components/shared/header/Header.jsx';
+// import Navbar from '../../components/shared/navbar/Navbar.jsx';
+// import Header from '../../components/shared/header/Header.jsx';
 import './ContentPage.scss';
 import Featured from '../../components/shared/featured/Featured.jsx';
 import Loading from '../../components/shared/loading/Loading.jsx';
@@ -39,12 +39,12 @@ const ContentPage = ({ title }) => {
     <div className='page' id='page' >
       <Featured content={randomContent}/>
       <div className='page-navbar'>
-        <Navbar />
+        {/* <Navbar /> */}
     
       </div>
       {title === 'Movies' || title === 'Series' ? (
         <div className='page-header'>
-          <Header title={title} genres={genres} />
+          {/* <Header title={title} genres={genres} /> */}
         </div>
       ) : (
         ''
