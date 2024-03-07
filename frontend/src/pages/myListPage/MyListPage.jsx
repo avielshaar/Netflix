@@ -1,7 +1,7 @@
 import React from "react";
 import { useContent } from "../../contexts/ContentContext.jsx";
 import { useEffect } from "react";
-// import Navbar from "../../components/shared/navbar/Navbar.jsx";
+import Navbar from "../../components/shared/navbar/Navbar.jsx";
 import ListItem from "../../components/shared/listItem/ListItem.jsx";
 import "./MyListPage.scss";
 
@@ -15,7 +15,7 @@ const MyListPage = () => {
 
   return (
     <div className="page">
-      {/* <Navbar></Navbar> */}
+      <Navbar></Navbar>
       <h2>My list:</h2>
       <div className="box">
       {myList.map((content) => (
