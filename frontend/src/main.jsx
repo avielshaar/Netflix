@@ -8,7 +8,7 @@ import { UserProvider } from './contexts/UserContext.jsx';
 import { ContentProvider } from './contexts/ContentContext.jsx';
 
 // http://localhost:8080
-axios.defaults.baseURL = import.meta.env.DEV ? 'http://localhost:8080' : 'https://netflix-copy-gamma.vercel.app/';
+axios.defaults.baseURL = import.meta.env.DEV ? 'http://localhost:8080' : 'https://netflix-copy-gamma.vercel.app';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
