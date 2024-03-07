@@ -1,92 +1,92 @@
 .navbar {
-  width: 100%;
-  color: white;
-  font-size: 14px;
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  box-sizing: border-box;
-  background-color:transparent !important;;
-
-  &.scrolled {
-    background-color:black !important;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    box-sizing: border-box;
+    background-color:transparent !important;;
+  
+    &.scrolled {
+      background-color:black !important;
+    }
   }
-}
-
-.container {
-  padding: 0px 50px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-
-  .left {
+  
+  .container {
+    padding: 0px 50px;
+    width: 100%;
     display: flex;
     align-items: center;
-
-    img {
-      height: 25px;
-      margin-right: 40px;
-    }
-
-    .nav-item {
-      margin-right: 20px;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
-
-      &:hover {
+    justify-content: space-between;
+    height: 70px;
+  
+    .left {
+      display: flex;
+      align-items: center;
+  
+      img {
+        height: 25px;
+        margin-right: 40px;
+      }
+  
+      .nav-item {
+        margin-right: 20px;
+        cursor: pointer;
         text-decoration: none;
+        color: white;
+  
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
-  }
-
-  .right {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    flex-wrap: wrap; 
-    justify-content: flex-end;
-    margin-right: 75px;
-
-    .icon {
-      margin: 0px 15px;
-      cursor: pointer;
-    }
-
-    img {
-      width: 30px;
-      height: 30px;
-      border-radius: 5px;
-      object-fit: cover;
-      cursor: pointer;
-    }
-
-    .profile {
-      position: relative;
-
-      .options {
-        display: none;
-        background-color: var(--main-color);
-        border-radius: 5px;
-        position: absolute;
-        top: calc(100% + 10px);
-        right: 0
-      }
-
-      span {
-        padding: 10px;
+  
+    .right {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      flex-wrap: wrap; 
+      justify-content: flex-end;
+      margin-right: 75px;
+  
+      .icon {
+        margin: 0px 15px;
         cursor: pointer;
       }
-
-      &:hover {
+  
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+  
+      .profile {
+        position: relative;
+  
         .options {
-          display: flex;
-          flex-direction: column;
-          margin-top: -10px;
+          display: none;
+          background-color: var(--main-color);
+          border-radius: 5px;
+          position: absolute;
+          top: calc(100% + 10px);
+          right: 0
+        }
+  
+        span {
+          padding: 10px;
+          cursor: pointer;
+        }
+  
+        &:hover {
+          .options {
+            display: flex;
+            flex-direction: column;
+            margin-top: -10px;
+          }
         }
       }
     }
   }
-}
