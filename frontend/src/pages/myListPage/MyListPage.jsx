@@ -5,6 +5,7 @@ import "./MyListPage.scss";
 import Navbar from "../../components/shared/navbar/Navbar.jsx";
 import ListItem from "../../components/shared/listItem/ListItem.jsx";
 
+
 const MyListPage = () => {
   const { myList, getMyList } = useContent();
   useEffect(() => {
