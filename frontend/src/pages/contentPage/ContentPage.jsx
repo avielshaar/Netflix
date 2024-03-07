@@ -57,12 +57,13 @@ const ContentPage = ({ title }) => {
         ) : error ? (
           <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
-          <div className='page-lists'>
-            {lists.map((list) => (
+          <div className='page-lists'>            
+            {lists ?  (lists.map((list) => (
               <div key={list.title}>
                 <List title={list.title} data={list.content} />
               </div>
-            ))}
+            ))):<h1>error</h1> }
+                       
           </div>
         )}
       </div>
