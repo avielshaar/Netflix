@@ -14,9 +14,9 @@
 }
 
 .pageContent {
-  position: relative; // Set position to relative
+ 
   z-index: 102;
-  top: -35%; 
+  
 }
 
 .page {
@@ -24,6 +24,11 @@
   overflow-x: hidden;
   max-height: 100vh;
   position: relative; // Set position to relative
+  
+  .featured{
+    height: 90vh;
+  }
+
 }
 
 h1 {

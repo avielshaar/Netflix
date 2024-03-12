@@ -1,92 +1,198 @@
 .navbar {
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  background-color: transparent !important;
+}
+
+.navbar.scrolled {
+  background-color: black !important;
+}
+
+.logo {
+  height: 30px;
+  width: 80px;
+  margin-right: 30px;
+  position: relative;
+  left: -10px;
+}
+
+.container {
+  padding: 0px 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  .nav-item {
+    margin-right: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: 75px;
+
+  .icon {
+    margin: 0px 15px;
+    cursor: pointer;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .profile {
+    position: relative;
+
+    .options {
+      display: none;
+      background-color: var(--main-color);
+      border-radius: 5px;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+    }
+
+    span {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    &:hover {
+      .options {
+        display: flex;
+        flex-direction: column;
+        margin-top: -10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .navbar {
     width: 100%;
     color: white;
-    font-size: 14px;
+    font-size: 9px;
     position: fixed;
     top: 0;
     z-index: 100;
     box-sizing: border-box;
-    background-color:transparent !important;;
-  
-    &.scrolled {
-      background-color:black !important;
-    }
+    background-color: transparent !important;
   }
-  
+
+  .navbar.scrolled {
+    background-color: black !important;
+  }
+
+  .logo {
+    height: 20px;
+    width: 55px;
+    margin-right: 10px;
+    position: relative;
+    left: -10px;
+  }
+
   .container {
-    padding: 0px 50px;
+    padding: 0 10px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
-  
-    .left {
-      display: flex;
-      align-items: center;
-  
-      img {
-        height: 25px;
-        margin-right: 40px;
-      }
-  
-      .nav-item {
-        margin-right: 20px;
-        cursor: pointer;
-        text-decoration: none;
-        color: white;
-  
-        &:hover {
-          text-decoration: none;
-        }
-      }
+    height: 50px;
+  }
+  .right .icon.notifications,
+  .right .icon.kids-span {
+    display: none;
+  }
+  .left,
+  .right {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  .right {
+    margin-top: 10px;
+  }
+
+  .left .nav-item {
+    margin-right: 3px;
+    font-size: 9px;
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      text-decoration: none;
     }
-  
-    .right {
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-      flex-wrap: wrap; 
-      justify-content: flex-end;
-      margin-right: 75px;
-  
-      .icon {
-        margin: 0px 15px;
-        cursor: pointer;
-      }
-  
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 5px;
-        object-fit: cover;
-        cursor: pointer;
-      }
-  
-      .profile {
-        position: relative;
-  
-        .options {
-          display: none;
-          background-color: var(--main-color);
-          border-radius: 5px;
-          position: absolute;
-          top: calc(100% + 10px);
-          right: 0
-        }
-  
-        span {
-          padding: 10px;
-          cursor: pointer;
-        }
-  
-        &:hover {
-          .options {
-            display: flex;
-            flex-direction: column;
-            margin-top: -10px;
-          }
-        }
+  }
+
+  .right .icon,
+  .right img {
+    cursor: pointer;
+  }
+
+  .right img {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    object-fit: cover;
+    margin-right: 3px;
+  }
+
+  .right .profile {
+    position: relative;
+    margin-left: 3px;
+
+    .options {
+      background-color: var(--main-color);
+      border-radius: 3px;
+      position: absolute;
+      top: calc(100% + 5px);
+      right: 0;
+    }
+
+    span {
+      padding: 5px;
+      cursor: pointer;
+      font-size: 9px;
+    }
+
+    &:hover {
+      .options {
+        display: flex;
+        flex-direction: column;
+        margin-top: -5px;
       }
     }
   }
+}

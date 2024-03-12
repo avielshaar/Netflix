@@ -17,7 +17,7 @@ const Featured = ({ content }) => {
 
   return (
     <div className="featured">
-      <div className="gradient-overlay-top"></div>
+      
       <div className="transparent">
         {videoID && <IframeComponent videoId={videoID} />}
         <div className="info">
@@ -45,8 +45,9 @@ const Featured = ({ content }) => {
             </>
           )}
         </div>
+        <div className="gradient-overlay-bot"></div>
       </div>
-      <div className="gradient-overlay-bot"></div>
+     
     </div>
   );
 };

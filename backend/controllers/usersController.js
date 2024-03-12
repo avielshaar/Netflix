@@ -32,6 +32,7 @@ const signUp = async (req, res) => {
     email: email,
     password: bcrypt.hashSync(password),
     isAdmin: false,
+    list:[],
     profilePicture: profilePicture,
   });
 
@@ -62,9 +63,15 @@ const addToList = async (req, res) => {
       return res.status(404).send({ message: 'Content not found' });
     }
 
+    // Check if content is already in the user's list
+    if (user.list.includes(content._id)) {
+      console.log('Content already in');
+      return res.status(400).send({ message: 'Content already in user list' });
+    }
+
     user.list.push(content._id);
     await user.save();
-    console.log('content added to my list');
+    console.log('Content added to my list');
     res.status(201).send({ message: 'Content added to user list successfully' });
   } catch (error) {
     console.error(error);
@@ -88,18 +95,19 @@ const removeFromList = async (req, res) => {
       return res.status(404).send({ message: 'Content not found' });
     }
 
-    user.list = user.list.filter((item) => item._id != content._id);
+    user.list = user.list.filter((item) => !item.equals(content._id));
     await user.save();
-
+    console.log("reomoved content");
     res.status(200).send({ message: 'Content removed from user list successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: 'Internal server error' });
   }
 };
+
 const getMyList = async (req, res) => {
   const userId = req.user._id;
-
+  
   try {
     const user = await User.findById(userId);
 
@@ -116,7 +124,7 @@ const getMyList = async (req, res) => {
 
     const list = userWithPopulatedList.list;
 
-    console.log(list);
+    
     res.status(200).send(list);
   } catch (error) {
     console.error(error);

@@ -37,7 +37,7 @@ const ContentPage = ({ title }) => {
 
   return (
     <div className='page' id='page' >
-      <Featured content={randomContent}/>
+      <div className="featured"><Featured content={randomContent}/></div>
       <div className='page-navbar'>
         <Navbar />    
       </div>
