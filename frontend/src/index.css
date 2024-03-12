@@ -10,3 +10,7 @@
   width: 100%;
   height: 98vh;
 }
+
+.small-container {
+  max-width: 600px;
+}
