@@ -1,9 +1,43 @@
 .featured {
-  height: 90vh;
+  height:  56.25vw;
   position: relative;
+  z-index: 100;
   
+  .gradient-overlay-top {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    z-index: 1000;
+    top: 0;
+    background: linear-gradient(to top, transparent,black);
+  }
+  .gradient-overlay-bot {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    z-index: 1000;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, var(--main-color));
   }
 
+  &.top {
+    
+  }
+
+  &.bottom {
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, var(--main-color));
+  }
+  
+ 
+  }
+  .featured .transparent {
+    width: 100%;
+    height: 100%;
+    background-color:transparent;
+    z-index: 2;
+  }
+  
   img {
     width: 25vh;
     height: 20vh;
@@ -14,7 +48,8 @@
     width: 30%;
     position: absolute;
     left: 50px;
-    bottom: 100px;
+    
+    bottom: 35%;
     color: white;
     display: flex;
     flex-direction: column;
@@ -38,6 +73,7 @@
         font-weight: 500;
         margin-right: 10px;
         cursor: pointer;
+        z-index: 2;
 
         &.play {
           background-color: white;
@@ -58,18 +94,17 @@
 
 .featured .iframe-container {
   position: relative;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  z-index:-1;
+  width:100%;
+  height:  56.25vw;
+
 }
 
 .featured .iframe-container iframe {
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+  
   opacity: 0.8; /* Adjust the opacity as needed */
 }

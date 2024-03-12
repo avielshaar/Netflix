@@ -18,16 +18,23 @@ const IframeComponent = ({ videoId }) => {
     };
 
     const onYouTubeIframeAPIReady = () => {
-      if (window.YT) {
+      console.log('reached create');
+    
+      if (window.YT && typeof window.YT.Player === 'function') {
         createPlayer();
+      } else {
+        // Retry after a short delay if the API is not ready yet
+        setTimeout(() => {
+          onYouTubeIframeAPIReady();
+        }, 100);
       }
     };
-
+    
     const createPlayer = () => {
       if (playerRef.current) {
         playerRef.current.destroy();
       }
-
+    
       playerRef.current = new window.YT.Player('youtube-player', {
         videoId,
         playerVars: {
@@ -49,6 +56,7 @@ const IframeComponent = ({ videoId }) => {
         },
       });
     };
+    
 
     const onPlayerReady = (event) => {
       event.target.playVideo();

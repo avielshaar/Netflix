@@ -39,8 +39,7 @@ const ContentPage = ({ title }) => {
     <div className='page' id='page' >
       <Featured content={randomContent}/>
       <div className='page-navbar'>
-        <Navbar />
-    
+        <Navbar />    
       </div>
       {title === 'Movies' || title === 'Series' ? (
         <div className='page-header'>
@@ -49,9 +48,7 @@ const ContentPage = ({ title }) => {
       ) : (
         ''
       )}
-      
-      
-      <div className='page-content'>
+      <div className='pageContent'>
         {loading ? (
           <Loading />
         ) : error ? (

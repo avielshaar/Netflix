@@ -17,34 +17,39 @@ const Featured = ({ content }) => {
 
   return (
     <div className="featured">
-      {videoID &&<IframeComponent videoId={videoID} />}
-      <div className="info">
-        {content && (
-          <>
-            <img
-              src={content.imgTitle}
-              alt=""
-              className="imageTitle"
-            />
-            <span className="desc">
-              {content.description ||
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae adipisci repellendus eum quasi illo, velit numquam, maxime tempora sint deleniti, aliquid qui? Facilis, adipisci! Ratione hic repudiandae temporibus eum earum?"}
-            </span>
-            <div className="buttons">
-              <button className="play">
-                <PlayArrowIcon/>
-                <span>Play</span>
-              </button>
-              <button className="more">
-                <InfoOutlinedIcon/>
-                <span>Info</span>
-              </button>
-            </div>
-          </>
-        )}
+      <div className="gradient-overlay-top"></div>
+      <div className="transparent">
+        {videoID && <IframeComponent videoId={videoID} />}
+        <div className="info">
+          {content && (
+            <>
+              <img
+                src={content.imgTitle}
+                alt=""
+                className="imageTitle"
+              />
+              <span className="desc">
+                {content.description ||
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae adipisci repellendus eum quasi illo, velit numquam, maxime tempora sint deleniti, aliquid qui? Facilis, adipisci! Ratione hic repudiandae temporibus eum earum?"}
+              </span>
+              <div className="buttons">
+                <button className="play">
+                  <PlayArrowIcon />
+                  <span>Play</span>
+                </button>
+                <button className="more">
+                  <InfoOutlinedIcon />
+                  <span>Info</span>
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
+      <div className="gradient-overlay-bot"></div>
     </div>
   );
 };
+
 
 export default Featured;

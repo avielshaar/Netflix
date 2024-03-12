@@ -1,18 +1,29 @@
 .ContentPage {
   padding: 20px;
   text-align: center;
+  overflow: hidden;
+  width: 100vw;
 }
 
 .ContentPage-lists {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  position: relative;
+  z-index: 1; // Set a lower z-index value
 }
 
-.page{
-  background-color: black;
-  overflow: auto ; 
+.pageContent {
+  position: relative; // Set position to relative
+  z-index: 102;
+  top: -35%; 
+}
+
+.page {
+  overflow: auto;
+  overflow-x: hidden;
   max-height: 100vh;
+  position: relative; // Set position to relative
 }
 
 h1 {

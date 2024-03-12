@@ -7,6 +7,7 @@ body {
 /* Set height of HTML and body to 100% */
 html, body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 /* Apply background to .home class */

@@ -68,10 +68,10 @@ const ListItem = ({ content }) => {
      setIsInMyList(isContentInList());
   }, [myList]);
   
-
+  // {isHovered ? "listItem hover" : "listItem"}
   return (
     <div
-      className="listItem"
+    className={`listItem ${isHovered ? 'hover' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -80,7 +80,7 @@ const ListItem = ({ content }) => {
       )}
       {isHovered && (
         <>
-          <div>
+          <div >
             <YouTube videoId={videoID} opts={opts} />
           </div>
           <div className="itemInfo">
