@@ -41,6 +41,16 @@ const SignIn = () => {
     <Container className='small-container'>
       <Title title='SignIn Page' />
       <h1 className='my-3'>Sign In</h1>
+      
+      <div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Form onSubmit={submitHandler}>
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email:</Form.Label>
@@ -60,6 +70,7 @@ const SignIn = () => {
           Forgot your Password? <Link to='/reset'>Reset password</Link>
         </div>
       </Form>
+      </div>
     </Container>
   );
 };
