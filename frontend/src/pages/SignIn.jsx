@@ -7,6 +7,7 @@ import { Button, Link, toast } from '../imports';
 import { getError } from '../utils';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
+import './SignIn.scss';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -41,10 +42,11 @@ const SignIn = () => {
     <Container className='small-container'>
       <Title title='SignIn Page' />
       <h1 className='my-3'>Sign In</h1>
+      
       <Form onSubmit={submitHandler}>
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email:</Form.Label>
-          <Form.Control required onChange={(e) => setEmail(e.target.value)} placeholder='example@example.com'></Form.Control>
+          <Form.Control type='email' required onChange={(e) => setEmail(e.target.value)} placeholder='example@example.com'></Form.Control>
         </Form.Group>
         <Form.Group className='mb-3' controlId='password'>
           <Form.Label>Password:</Form.Label>
@@ -60,6 +62,7 @@ const SignIn = () => {
           Forgot your Password? <Link to='/reset'>Reset password</Link>
         </div>
       </Form>
+      
     </Container>
   );
 };
