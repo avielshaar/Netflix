@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useUser } from './UserContext';
 
 const SearchContext = createContext();
 
@@ -11,6 +12,8 @@ export const SearchProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { search } = useLocation();
+  const { get } = useUser();
+  const userInfo = get();
 
   const getFilterURI = (searchFromURI, filter) => {
     const searchParams = new URLSearchParams(searchFromURI);
