@@ -2,7 +2,7 @@ import React from "react";
 import { useContent } from "../../contexts/ContentContext.jsx";
 import { useEffect } from "react";
 import "./MyListPage.scss";
-import Navbar from "../../components/shared/navbar/Navbar.jsx";
+import Navbar from '../../components/shared/Navbar/Navbar.jsx';
 import ListItem from "../../components/shared/listItem/ListItem.jsx";
 
 const MyListPage = () => {

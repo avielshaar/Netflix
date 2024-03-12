@@ -1,44 +1,126 @@
 import { useEffect, useReducer, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Title from '../../components/shared/title/Title.jsx';
-import { Button, Col, LinkContainer, Row } from '../../imports';
+import { Button, Col, Row } from '../../imports';
 import Loading from '../../components/shared/loading/Loading.jsx';
 import MessageBox from '../../components/shared/messageBox/MessageBox.jsx';
 import ListItem from '../../components/shared/listItem/ListItem.jsx';
-import { useSearch } from '../../contexts/searchContext.jsx';
+import { useUser } from '../../contexts/UserContext.jsx';
+import Navbar from '../../components/shared/Navbar/Navbar.jsx';
+import { axios } from '../../imports';
 
 const SearchPage = () => {
-  const { orders, genres, content, loading, error, getData } = useSearch();
-  const navigate = useNavigate();
+  const [currOrder, setCurrOrder] = useState('az');
+  const [currGenre, setCurrGenre] = useState('All');
+  const [currQuery, setCurrQuery] = useState('');
+
+  const [orders, setOrders] = useState(['yr', 'az', 'za']);
+  const [genres, setGenres] = useState([]);
+  const [content, setContent] = useState([]);
+  const [filteredContent, setFilteredContent] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const { get } = useUser();
+  const userInfo = get();
 
   useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+
+        const genresResponse = await axios.get('/api/v1/content/genres', {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        });
+        genresResponse.data.unshift('All');
+        setGenres(genresResponse.data);
+
+        const contentResponse = await axios.get('/api/v1/content', {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        });
+        setContent(contentResponse.data);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+        setLoading(false);
+      }
+    };
+
     getData();
   }, []);
 
-  const handleSearchChange = (e) => {
-    getData({ query: e.target.value });
+  useEffect(() => {
+    getFilteredContent();
+  }, [currQuery, currGenre, currOrder]);
+
+  const handleSearchChange = async (e) => {
+    setCurrQuery(e.target.value);
   };
 
-  const handleGnereChange = (e) => {
-    getData({ genre: e.target.value });
+  const handleGenreChange = async (e) => {
+    setCurrGenre(e.target.value);
   };
 
-  const handleOrderChange = (e) => {
-    getData({ order: e.target.value });
+  const handleOrderChange = async (e) => {
+    setCurrOrder(e.target.value);
+  };
+
+  const getFilteredContent = async () => {
+    try {
+      setLoading(true);
+
+      let filteredContent = content;
+      if (currQuery !== '') {
+        filteredContent = filteredContent.filter((c) => c.title.toLowerCase().includes(currQuery.toLowerCase()));
+      }
+      if (currGenre !== 'All') {
+        console.log('inside genre filter, currGenre:', currGenre);
+        filteredContent = filteredContent.filter((c) => c.genre === currGenre);
+      }
+      console.log('genre', filteredContent);
+      switch (currOrder) {
+        case 'az':
+          filteredContent.sort((a, b) => a.title.localeCompare(b.title));
+          break;
+        case 'za':
+          filteredContent.sort((a, b) => b.title.localeCompare(a.title));
+          break;
+        case 'yr':
+          filteredContent.sort((a, b) => a.year.localeCompare(b.year));
+      }
+      console.log('order', filteredContent);
+
+      setFilteredContent(filteredContent);
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+      setLoading(false);
+    }
   };
 
   return (
     <div>
       <Title title='Search Page' />
+      <Navbar></Navbar>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <div>
-        <input type='search' className='serach-bar' placeholder='Search here' value={searchTerm} onChange={handleSearchChange} />
+        <input type='text' onChange={handleSearchChange} placeholder='Search...' />
       </div>
 
       <Row>
         <Col md={3}>
           <h3>Gneres:</h3>
           <div>
-            <select className='genre-selector' onchange={handleGnereChange}>
+            <select className='genre-selector' onChange={handleGenreChange}>
               {genres.map((genre, index) => (
                 <option key={index} value={genre}>
                   {genre}
@@ -48,10 +130,10 @@ const SearchPage = () => {
           </div>
           <h3>Orders:</h3>
           <div>
-            <select className='order-selector' onchange={handleOrderChange}>
+            <select className='order-selector' onChange={handleOrderChange}>
               {orders.map((order, index) => (
                 <option key={index} value={order}>
-                  {genre}
+                  {order}
                 </option>
               ))}
             </select>
@@ -61,17 +143,19 @@ const SearchPage = () => {
           {loading ? (
             <Loading />
           ) : error ? (
-            <MessageBox variant='danger'>{error}</MessageBox>
+            <MessageBox variant='danger'>{error.MessageBox}</MessageBox>
           ) : (
             <>
-              {content.length === 0 && <MessageBox>No content Found</MessageBox>}
-              <Row>
-                {content.map((c) => (
-                  <Col sm={6} lg={4} className='mb-3' key={c._id}>
-                    <ListItem content={c}></ListItem>
-                  </Col>
-                ))}
-              </Row>
+              {filteredContent.length === 0 && <MessageBox>No content Found</MessageBox>}
+              <div className='page'>
+                <div className='box'>
+                  {filteredContent.map((c) => (
+                    <div key={c.title}>
+                      <ListItem content={c}></ListItem>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </>
           )}
         </Col>

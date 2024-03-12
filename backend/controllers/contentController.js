@@ -30,46 +30,4 @@ const getGenres = async (req, res) => {
   res.send(genres);
 };
 
-const getContentByQuery = async (req, res) => {
-  const { query } = req;
-  const order = query.order || '';
-  const genre = query.genre || '';
-  const searchQuery = query.query || '';
-
-  const queryFilter =
-    searchQuery && searchQuery !== 'all'
-      ? {
-          title: {
-            $regex: searchQuery,
-            $options: 'i',
-          },
-        }
-      : {};
-
-  const genreFilter =
-    genre && genre !== 'all'
-      ? {
-          genre,
-        }
-      : {};
-
-  const sortContentFilter = order === 'yr' ? { year: -1 } : order === 'az' ? { title: -1 } : order === 'za' ? { title: -1 } : { _id: -1 };
-
-  const content = await Content.find({
-    ...queryFilter,
-    ...genreFilter,
-  })
-    .sort(sortContentFilter)
-
-  const countContent = await Content.countDocuments({
-    ...queryFilter,
-    ...genreFilter,
-  });
-
-  res.send({
-    content,
-    countContent,
-  });
-};
-
-export { getContent, getContentById, getContentByToken, getGenres, getContentByQuery };
+export { getContent, getContentById, getContentByToken, getGenres };

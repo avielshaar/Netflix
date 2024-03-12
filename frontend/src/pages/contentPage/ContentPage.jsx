@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import List from '../../components/shared/list/List.jsx';
-import Navbar from '../../components/shared/navbar/Navbar.jsx';
-import Header from '../../components/shared/header/Header.jsx';
+import Navbar from '../../components/shared/Navbar/Navbar.jsx';
+import Header from '../../components/shared/Header/Header.jsx';
 import './ContentPage.scss';
 import Loading from '../../components/shared/loading/Loading.jsx';
 import MessageBox from '../../components/shared/messageBox/MessageBox.jsx';
