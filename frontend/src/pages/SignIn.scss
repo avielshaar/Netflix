@@ -1,0 +1,112 @@
+.small-container {
+    background: rgba(0,0,0,0.75) ;
+    background-size: cover;
+    height: 80% !important;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 30px !important;
+    border-radius: 10px;
+    max-width: 400px !important;
+    margin: 50px auto;
+    direction: ltr;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+    text-align: left;
+    display: flex !important; 
+    flex-direction: column; 
+    justify-content: center !important; 
+    align-items: center ; 
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  // Title styles
+  .my-3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 28px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+      margin-bottom: 0px;
+    padding: 0;
+  
+    color: rgb(255,255,255);
+    font-size: 2rem;
+    font-weight: 700;
+    
+  }
+  
+  // Form styles
+  form {
+    margin-top: 30px;
+    width: 100%; // Ensure the form takes up the container's width
+    max-width: 300px; // Adjust as needed
+  }
+  
+  // Label styles
+  form label {
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  // Input styles
+  form input[type="email"]{
+    max-width: 300px; // Adjust as needed
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid white;
+  }
+  
+  form input[type="password"] {
+    max-width: 300px; // Adjust as needed
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid white;
+  }
+  
+  // Button styles
+  form button {
+    background: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 107%;  // don't know why this isn't just equal to above
+  
+  }
+  
+  // Button hover effect
+  form button:hover {
+    background: #ff3e5a;
+  }
+  
+  // Link styles
+  .mb-3 {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .mb-3 a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .mb-3 a:hover {
+    text-decoration: underline;
+  }

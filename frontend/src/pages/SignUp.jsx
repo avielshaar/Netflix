@@ -50,11 +50,11 @@ const SignUp = () => {
       <Form onSubmit={submitHandler}>
         <Form.Group className='mb-3' controlId='name'>
           <Form.Label>Name:</Form.Label>
-          <Form.Control required onChange={(e) => setName(e.target.value)} placeholder='Enter your name'></Form.Control>
+          <Form.Control type='text' required onChange={(e) => setName(e.target.value)} placeholder='Enter your name'></Form.Control>
         </Form.Group>{' '}
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email:</Form.Label>
-          <Form.Control required onChange={(e) => setEmail(e.target.value)} placeholder='example@example.com'></Form.Control>
+          <Form.Control type='email' required onChange={(e) => setEmail(e.target.value)} placeholder='example@example.com'></Form.Control>
         </Form.Group>
         <Form.Group className='mb-3' controlId='password'>
           <Form.Label>Password:</Form.Label>
