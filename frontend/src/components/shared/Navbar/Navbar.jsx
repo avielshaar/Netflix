@@ -61,7 +61,9 @@ const Navbar = () => {
          
         </div>
         <div className="right">
+          <Link to = "/search">
           <SearchIcon className="icon search-icon" />
+          </Link>
           <span className="icon kids-span">Kids</span>
           <NotificationsIcon className="icon notifications" />
           {/* <img
