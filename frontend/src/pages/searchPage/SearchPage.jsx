@@ -1,12 +1,14 @@
-import { useEffect, useReducer, useState } from 'react';
+// SearchPage.jsx
+
+import { useEffect, useState } from 'react';
 import Title from '../../components/shared/title/Title.jsx';
-import { Button, Col, Row } from '../../imports';
 import Loading from '../../components/shared/loading/Loading.jsx';
 import MessageBox from '../../components/shared/messageBox/MessageBox.jsx';
 import ListItem from '../../components/shared/listItem/ListItem.jsx';
 import { useUser } from '../../contexts/UserContext.jsx';
 import Navbar from '../../components/shared/Navbar/Navbar.jsx';
 import { axios } from '../../imports';
+import './SearchPage.scss';
 
 const SearchPage = () => {
   const [currOrder, setCurrOrder] = useState('az');
@@ -38,8 +40,8 @@ const SearchPage = () => {
         const contentResponse = await axios.get('/api/v1/content', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
-        setContent(contentResponse.data);
 
+        setContent(contentResponse.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -55,19 +57,19 @@ const SearchPage = () => {
     getFilteredContent();
   }, [currQuery, currGenre, currOrder]);
 
-  const handleSearchChange = async (e) => {
+  const handleSearchChange = (e) => {
     setCurrQuery(e.target.value);
   };
 
-  const handleGenreChange = async (e) => {
+  const handleGenreChange = (e) => {
     setCurrGenre(e.target.value);
   };
 
-  const handleOrderChange = async (e) => {
+  const handleOrderChange = (e) => {
     setCurrOrder(e.target.value);
   };
 
-  const getFilteredContent = async () => {
+  const getFilteredContent = () => {
     try {
       setLoading(true);
 
@@ -76,10 +78,8 @@ const SearchPage = () => {
         filteredContent = filteredContent.filter((c) => c.title.toLowerCase().includes(currQuery.toLowerCase()));
       }
       if (currGenre !== 'All') {
-        console.log('inside genre filter, currGenre:', currGenre);
         filteredContent = filteredContent.filter((c) => c.genre === currGenre);
       }
-      console.log('genre', filteredContent);
       switch (currOrder) {
         case 'az':
           filteredContent.sort((a, b) => a.title.localeCompare(b.title));
@@ -90,10 +90,8 @@ const SearchPage = () => {
         case 'yr':
           filteredContent.sort((a, b) => a.year.localeCompare(b.year));
       }
-      console.log('order', filteredContent);
 
       setFilteredContent(filteredContent);
-
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -103,23 +101,15 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
+    <div className='search-page'>
       <Title title='Search Page' />
-      <Navbar></Navbar>
+      <Navbar />
       <br />
       <br />
       <br />
-      <br />
-      <br />
-
-      <div>
-        <input type='text' onChange={handleSearchChange} placeholder='Search...' />
-      </div>
-
-      <Row>
-        <Col md={3}>
-          <h3>Gneres:</h3>
-          <div>
+      <div className='selectors-and-search'>
+        <div className='selectors'>
+          <div className='selector'>
             <select className='genre-selector' onChange={handleGenreChange}>
               {genres.map((genre, index) => (
                 <option key={index} value={genre}>
@@ -128,8 +118,7 @@ const SearchPage = () => {
               ))}
             </select>
           </div>
-          <h3>Orders:</h3>
-          <div>
+          <div className='selector'>
             <select className='order-selector' onChange={handleOrderChange}>
               {orders.map((order, index) => (
                 <option key={index} value={order}>
@@ -138,28 +127,28 @@ const SearchPage = () => {
               ))}
             </select>
           </div>
-        </Col>
-        <Col md={9}>
-          {loading ? (
-            <Loading />
-          ) : error ? (
-            <MessageBox variant='danger'>{error.MessageBox}</MessageBox>
-          ) : (
-            <>
-              {filteredContent.length === 0 && <MessageBox>No content Found</MessageBox>}
-              <div className='page'>
-                <div className='box'>
-                  {filteredContent.map((c) => (
-                    <div key={c.title}>
-                      <ListItem content={c}></ListItem>
-                    </div>
-                  ))}
-                </div>
+        </div>
+        <div className='search-input'>
+          <input type='text' onChange={handleSearchChange} placeholder='Search...' />
+        </div>
+      </div>
+
+      <div className='content-list'>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <MessageBox variant='danger'>{error.MessageBox}</MessageBox>
+        ) : (
+          <>
+            {filteredContent.length === 0 && <MessageBox>No content Found</MessageBox>}
+            {filteredContent.map((c) => (
+              <div className='content-item' key={c.title}>
+                <ListItem content={c} />
               </div>
-            </>
-          )}
-        </Col>
-      </Row>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };

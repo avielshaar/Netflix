@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import List from '../../components/shared/list/List.jsx';
 import Navbar from '../../components/shared/Navbar/Navbar.jsx';
-import Header from '../../components/shared/Header/Header.jsx';
 import './ContentPage.scss';
 import Loading from '../../components/shared/loading/Loading.jsx';
 import MessageBox from '../../components/shared/messageBox/MessageBox.jsx';
@@ -26,13 +25,6 @@ const ContentPage = ({ title }) => {
         <br />
         <br />
       </div>
-      {title === 'Movies' || title === 'Series' ? (
-        <div className='page-header'>
-          <Header title={title} genres={genres} />
-        </div>
-      ) : (
-        ''
-      )}
       <br />
       <br />
       <div className='page-content'>
