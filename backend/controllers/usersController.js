@@ -12,10 +12,10 @@ const signIn = async (req, res) => {
     if (bcrypt.compareSync(passwordFromWebsite, user.password)) {
       res.send({
         _id: user._id,
-        userName: user.userName,
+        username: user.username,
         email: user.email,
         profilePicture: user.profilePicture,
-        list: user.list,
+        myList: user.myList,
         token: generateToken(user),
       });
       return;
@@ -25,14 +25,14 @@ const signIn = async (req, res) => {
 };
 
 const signUp = async (req, res) => {
-  const { userName, email, password, profilePicture } = req.body;
+  const { username, email, password, profilePicture } = req.body;
 
   const newUser = new User({
-    userName: userName,
+    username: username,
     email: email,
     password: bcrypt.hashSync(password),
     isAdmin: false,
-    list:[],
+    myList: [],
     profilePicture: profilePicture,
   });
 
@@ -40,7 +40,7 @@ const signUp = async (req, res) => {
 
   res.send({
     _id: user._id,
-    name: user.name,
+    username: user.username,
     email: user.email,
     profilePicture: user.profilePicture,
     token: generateToken(user),
@@ -64,12 +64,12 @@ const addToList = async (req, res) => {
     }
 
     // Check if content is already in the user's list
-    if (user.list.includes(content._id)) {
+    if (user.myList.includes(content._id)) {
       console.log('Content already in');
       return res.status(400).send({ message: 'Content already in user list' });
     }
 
-    user.list.push(content._id);
+    user.myList.push(content._id);
     await user.save();
     console.log('Content added to my list');
     res.status(201).send({ message: 'Content added to user list successfully' });
@@ -95,9 +95,9 @@ const removeFromList = async (req, res) => {
       return res.status(404).send({ message: 'Content not found' });
     }
 
-    user.list = user.list.filter((item) => !item.equals(content._id));
+    user.myList = user.myList.filter((item) => !item.equals(content._id));
     await user.save();
-    console.log("reomoved content");
+    console.log('reomoved content');
     res.status(200).send({ message: 'Content removed from user list successfully' });
   } catch (error) {
     console.error(error);
@@ -107,7 +107,7 @@ const removeFromList = async (req, res) => {
 
 const getMyList = async (req, res) => {
   const userId = req.user._id;
-  
+
   try {
     const user = await User.findById(userId);
 
@@ -117,15 +117,14 @@ const getMyList = async (req, res) => {
 
     const userWithPopulatedList = await User.findById(userId)
       .populate({
-        path: 'list',
+        path: 'myList',
         model: 'Content', // Adjust 'Content' to the actual model name
       })
       .exec();
 
-    const list = userWithPopulatedList.list;
+    const myList = userWithPopulatedList.myList;
 
-    
-    res.status(200).send(list);
+    res.status(200).send(myList);
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: 'Internal server error' });

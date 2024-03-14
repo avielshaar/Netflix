@@ -8,13 +8,13 @@ const seedData = async (req, res) => {
     await User.deleteMany({});
     await Content.deleteMany({});
     await List.deleteMany({});
-
+    console.log('Data.users:', data.users);
     const users = await User.insertMany(data.users, { ordered: false });
+    console.log('Inserted users:', users);
     const content = await Content.insertMany(data.content, { ordered: false });
 
     const lists = await getLists();
     await List.insertMany(lists, { ordered: false });
-
     res.status(200).send('Data seeded successfully');
   } catch (error) {
     console.error('Error seeding data:', error);
@@ -30,7 +30,7 @@ async function getLists() {
   for (const listName of listMovieNames) {
     lists.push({
       title: listName,
-      content: shuffleContent(content.filter(item => !item.isSeries)).slice(0, 7),
+      content: shuffleContent(content.filter((item) => !item.isSeries)).slice(0, 7),
       isSeries: false,
     });
   }
@@ -39,31 +39,30 @@ async function getLists() {
   for (const listName of listSeriesNames) {
     lists.push({
       title: listName,
-      content: shuffleContent(content.filter(item => item.isSeries)).slice(0, 7),
+      content: shuffleContent(content.filter((item) => item.isSeries)).slice(0, 7),
       isSeries: true,
     });
   }
 
-
-  // new
-  // lists.push(
-  //   {
-  //     title: 'New movies',
-  //     content: content
-  //       .find({ isSeries: false })
-  //       .map((item) => item.year)
-  //       .slice(0, 7),
-  //     isSeries: false,
-  //   },
-  //   {
-  //     title: 'New series',
-  //     content: content
-  //       .find({ isSeries: true })
-  //       .map((item) => item.year)
-  //       .slice(0, 7),
-  //     isSeries: true,
-  //   }
-  // );
+  //new
+  lists.push(
+    {
+      title: 'New movies',
+      content: content
+        .filter((c) => !c.isSeries)
+        .sort((a, b) => b.year - a.year)
+        .slice(0, 7),
+      isSeries: false,
+    },
+    {
+      title: 'New series',
+      content: content
+        .filter((item) => item.isSeries)
+        .sort((a, b) => b.year - a.year)
+        .slice(0, 7),
+      isSeries: true,
+    }
+  );
 
   return lists;
 }

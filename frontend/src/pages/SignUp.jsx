@@ -50,8 +50,23 @@ const SignUp = () => {
       <Form onSubmit={submitHandler}>
         <Form.Group className='mb-3' controlId='name'>
           <Form.Label>Name:</Form.Label>
-          <Form.Control type='text' required onChange={(e) => setName(e.target.value)} placeholder='Enter your name'></Form.Control>
-        </Form.Group>{' '}
+          <Form.Control
+            type='text'
+            required
+            onChange={(e) => setName(e.target.value)}
+            placeholder='Enter your name'
+            style={{
+              background: '#333',
+              color: '#fff',
+              border: '1px solid white',
+              borderRadius: '5px',
+              padding: '10px',
+              marginBottom: '15px',
+              width: '100%',
+              fontSize: '1rem',
+            }}
+          ></Form.Control>
+        </Form.Group>
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email:</Form.Label>
           <Form.Control type='email' required onChange={(e) => setEmail(e.target.value)} placeholder='example@example.com'></Form.Control>
@@ -76,3 +91,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+<Form.Control type='text' className='text1' required onChange={(e) => setName(e.target.value)} placeholder='Enter your name'></Form.Control>;

@@ -1,11 +1,9 @@
-import React from "react";
-import { useContent } from "../../contexts/ContentContext.jsx";
-import { useEffect } from "react";
-import Navbar from "../../components/shared/Navbar/Navbar.jsx";
-import ListItem from "../../components/shared/listItem/ListItem.jsx";
-import "./MyListPage.scss";
-
-
+import React from 'react';
+import { useContent } from '../../contexts/ContentContext.jsx';
+import { useEffect } from 'react';
+import Navbar from '../../components/shared/Navbar/Navbar.jsx';
+import ListItem from '../../components/shared/listItem/ListItem.jsx';
+import './MyListPage.scss';
 
 const MyListPage = () => {
   const { myList, getMyList } = useContent();
@@ -14,15 +12,15 @@ const MyListPage = () => {
   }, [myList]);
 
   return (
-    <div className="page">
+    <div className='page'>
       <Navbar></Navbar>
       <h2>My list:</h2>
-      <div className="box">
-      {myList.map((content) => (
-        <div key={content.title}>
-          <ListItem content={content}></ListItem>
-        </div>
-      ))}
+      <div className='box'>
+        {myList.map((content) => (
+          <div key={content.title}>
+            <ListItem content={content}></ListItem>
+          </div>
+        ))}
       </div>
     </div>
   );
