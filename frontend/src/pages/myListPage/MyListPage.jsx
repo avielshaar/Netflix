@@ -14,7 +14,10 @@ const MyListPage = () => {
   return (
     <div className='page'>
       <Navbar></Navbar>
-      <h2>My list:</h2>
+      <div className='titlediv'>
+        <h2>My list:</h2>
+      </div>
+
       <div className='box'>
         {myList.map((content) => (
           <div key={content.title}>
