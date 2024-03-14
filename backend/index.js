@@ -1,5 +1,3 @@
-// backend/index.js
-
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -30,8 +28,8 @@ app.use((err, req, res, next) => {
 mongoose
   .connect(connectionString)
   .then(() => {
-    console.log('MongoDB connected successfully');
+    app.listen(port, function () {
+      console.log('listening on ', port);
+    });
   })
-  .catch((err) => console.error('MongoDB connection error:', err));
-
-export default app; // Export the app object
+  .catch((err) => console.log(err.message));

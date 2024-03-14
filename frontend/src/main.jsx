@@ -7,8 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { UserProvider } from './contexts/UserContext.jsx';
 import { ContentProvider } from './contexts/ContentContext.jsx';
 
-// http://localhost:8080
-axios.defaults.baseURL = import.meta.env.DEV ? 'http://localhost:8080' : 'https://netflix-pied-pi.vercel.app/';
+axios.defaults.baseURL = import.meta.env.DEV ? 'http://localhost:8080' : 'https://netflix-backend-theta.vercel.app/';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <UserProvider>
