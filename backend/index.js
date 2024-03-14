@@ -1,3 +1,5 @@
+// backend/index.js
+
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -28,8 +30,8 @@ app.use((err, req, res, next) => {
 mongoose
   .connect(connectionString)
   .then(() => {
-    app.listen(port, function () {
-      console.log('listening on ', port);
-    });
+    console.log('MongoDB connected successfully');
   })
-  .catch((err) => console.log(err.message));
+  .catch((err) => console.error('MongoDB connection error:', err));
+
+export default app; // Export the app object
