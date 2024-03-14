@@ -127,7 +127,7 @@ const SearchPage = () => {
           </div>
         </div>
         <div className='search-input'>
-          <input type='text' onChange={handleSearchChange} placeholder='Search...' />
+          <input type='text' onChange={handleSearchChange} placeholder='Search...'/>
         </div>
       </div>
 
@@ -140,7 +140,7 @@ const SearchPage = () => {
           <>
             {filteredContent.length === 0 && <h1>No content Found.</h1>}
             {filteredContent.map((c) => (
-              <div  key={c.title}>
+              <div key={c.title}>
                 <ListItem content={c} />
               </div>
             ))}
