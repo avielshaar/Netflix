@@ -32,4 +32,6 @@ mongoose
       console.log('listening on ', port);
     });
   })
-  .catch((err) => console.log(err.message));
+  .catch((err) => console.log(err.message)); 
+
+module.exports = app;
