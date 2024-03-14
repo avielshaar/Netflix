@@ -25,11 +25,21 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-mongoose
-  .connect(connectionString)
-  .then(() => {
-    app.listen(port, function () {
-      console.log('listening on ', port);
+// Exporting a function that Vercel can invoke
+export default async (req, res) => {
+  // Connect to MongoDB
+  try {
+    await mongoose.connect(connectionString);
+
+    // Start the Express server
+    app.listen(port, () => {
+      console.log('Express server is running on port', port);
     });
-  })
-  .catch((err) => console.log(err.message)); 
+
+    // Handle requests
+    app(req, res);
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
