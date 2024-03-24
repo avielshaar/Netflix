@@ -16,30 +16,25 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//routes
+mongoose
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
+
 app.use('/api/v1/seed', seedRouter);
 app.use('/api/v1/content', contentRouter);
 app.use('/api/v1/lists', listsRouter);
 app.use('/api/v1/users', usersRouter);
+
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-// Exporting a function that Vercel can invoke
-export default async (req, res) => {
-  // Connect to MongoDB
-  try {
-    await mongoose.connect(connectionString);
-
-    // Start the Express server
-    app.listen(port, () => {
-      console.log('Express server is running on port', port);
-    });
-
-    // Handle requests
-    app(req, res);
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
+export default app;
