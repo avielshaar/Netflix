@@ -17,10 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 mongoose
-  .connect(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(connectionString)
   .then(() => {
     console.log('Connected to MongoDB');
   })
