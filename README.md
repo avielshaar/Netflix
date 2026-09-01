@@ -9,7 +9,7 @@
 ---
 
 ## 🔗 Project Links
-* **Live Demo:** [netflix-frontend-tau.vercel.app](https://netflix-frontend-tau.vercel.app/)
+* **Live Demo:** [netflix-frontend-tau.vercel.app](https://netflix-frontend-weld.vercel.app/)
 * **GitHub Repository:** [github.com/avielshaar/Netflix](https://github.com/avielshaar/Netflix)
 
 ---
