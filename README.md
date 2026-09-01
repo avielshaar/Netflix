@@ -1,24 +1,101 @@
 # Netflix Clone 🎬
 
-A full-stack streaming UI application with live movie data, built by a team of 3 developers.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View_App-E50914?style=for-the-badge&logo=netflix&logoColor=white)](#)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/avielshaar/Netflix)
+[![MERN Stack](https://img.shields.io/badge/Stack-MERN-informational?style=for-the-badge&logo=react)](https://react.dev/)
 
-## Features
-- Browse movies and TV shows via TMDB API
-- Watch trailers with React-YouTube integration
-- User authentication with JWT
-- Responsive Netflix-style UI
+> A responsive media streaming web application built on the MERN stack and Vite, integrating the TMDB REST API for dynamic catalog browsing and React-YouTube for in-app trailer playback.
 
-## Tech Stack
-**Frontend:** React, React-YouTube, CSS Modules  
-**Backend:** Node.js, Express  
-**Database:** MongoDB, Mongoose  
-**API:** TMDB (The Movie Database)
+---
 
-## My Role
-Led backend development, Git workflow management (branching strategy, code reviews, merge conflict resolution).
+## 🔗 Project Links
+* **Live Demo:** [View Live Application](#) *(Add your deployment URL here)*
+* **GitHub Repository:** [github.com/avielshaar/Netflix](https://github.com/avielshaar/Netflix)
 
-## 🚀 Live Demo
-[View Live](https://netflix-frontend-weld.vercel.app/)
+---
 
-## Screenshot
-<img width="1440" height="747" alt="Screenshot 2026-03-25 at 13 46 28" src="https://github.com/user-attachments/assets/0c460fd4-4768-4b65-98bb-68c6d0e80a4a" />
+## ✨ Features
+
+- **Dynamic Media Catalog**: Real-time integration with TMDB REST API fetching trending titles, top-rated movies, and category-filtered rows.
+- **Embedded Trailer Playback**: Interactive movie trailer playback modal powered by `react-youtube`.
+- **User Authentication**: Secure JWT-based authentication and session management with password hashing via `bcryptjs`.
+- **User Watchlist**: Persistent watchlist storage in MongoDB allowing authenticated users to bookmark and manage favorite titles.
+- **Serverless Ready**: Configured for streamlined cloud deployment using `vercel.json`.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework & Tooling**: React 18, Vite
+- **Media & APIs**: TMDB REST API, `react-youtube`
+- **Routing & State**: `react-router-dom`, React Context / Hooks
+
+### Backend
+- **Server**: Node.js, Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **Security & Auth**: `jsonwebtoken` (JWT), `bcryptjs`, `cors`
+- **Deployment Configuration**: `vercel.json`
+
+---
+
+## 📂 Project Structure
+
+```
+Netflix/
+├── backend/
+│   ├── controllers/       # Route controllers
+│   ├── models/            # Mongoose schemas (User, Watchlist)
+│   ├── routes/            # REST API endpoints
+│   ├── data.js            # Initial media data
+│   ├── utils.js           # JWT & auth helpers
+│   ├── vercel.json        # Serverless deployment configuration
+│   ├── index.js           # Server entry point
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/    # Navbar, Banner, Row, Trailer Modal
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── vite.config.js
+│   └── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `backend/.env` file:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Setup Backend
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### 2. Setup Frontend
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+---
+
+## 👥 Contributors
+- **Bar Musler** ([@Muslerr](https://github.com/Muslerr))
+- **Aviel Shaar** ([@avielshaar](https://github.com/avielshaar))
+- **Ori Bennett** ([@OriBennett](https://github.com/OriBennett))
