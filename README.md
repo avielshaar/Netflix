@@ -1,6 +1,6 @@
 # Netflix Clone 🎬
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-View_App-E50914?style=for-the-badge&logo=netflix&logoColor=white)](#)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View_App-E50914?style=for-the-badge&logo=netflix&logoColor=white)](https://netflix-frontend-tau.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/avielshaar/Netflix)
 [![MERN Stack](https://img.shields.io/badge/Stack-MERN-informational?style=for-the-badge&logo=react)](https://react.dev/)
 
@@ -9,7 +9,7 @@
 ---
 
 ## 🔗 Project Links
-* **Live Demo:** [View Live Application](#) *(Add your deployment URL here)*
+* **Live Demo:** [netflix-frontend-tau.vercel.app](https://netflix-frontend-tau.vercel.app/)
 * **GitHub Repository:** [github.com/avielshaar/Netflix](https://github.com/avielshaar/Netflix)
 
 ---
